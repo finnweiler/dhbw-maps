@@ -1,7 +1,8 @@
 import React from 'react'
-import { App, Button } from 'framework7-react'
+import { App } from 'framework7-react'
 import routes from '../js/routes'
 import store from '../js/store'
+import Map from './map'
 
 const LocationBasedService = () => {
   // Framework7 Parameters
@@ -21,8 +22,9 @@ const LocationBasedService = () => {
 
   return (
     <App { ...f7params } themeDark>
-      <Button outline>Button</Button>
+      <Map />
     </App>
   )
 }
+
 export default LocationBasedService
