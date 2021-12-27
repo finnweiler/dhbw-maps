@@ -1,0 +1,19 @@
+{
+  "cwd": "/home/finn/GitHub/WebEngineering",
+  "type": [
+    "pwa"
+  ],
+  "name": "LocationBasedService",
+  "framework": "react",
+  "template": "single-view",
+  "bundler": "vite",
+  "cssPreProcessor": "scss",
+  "theming": {
+    "customColor": false,
+    "color": "#007aff",
+    "darkTheme": true,
+    "iconFonts": true,
+    "fillBars": false
+  },
+  "customBuild": false
+}
