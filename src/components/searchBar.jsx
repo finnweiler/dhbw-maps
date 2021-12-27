@@ -6,7 +6,7 @@ const SearchBar = () => {
   let [searchHistory, setSearchHisotry] = useState(["Test"])
 
   const loadSearchHistory = () => {
-
+    //Load history from IndexedDB
   }
 
   useEffect(() => {
@@ -18,12 +18,12 @@ const SearchBar = () => {
   }
 
   return (
-    <div style={{position: 'absolute', zIndex: 1}}>
+    <div style={{zIndex: 1000, position: 'absolute', width: '50%', left: '50%', transform: 'translate(-50%,0)'}}>
       <Searchbar
         searchContainer='.search-list'
         searchIn='.item-title'
         disableButton={!theme.aurora}
-        onChange={(event) => {console.log(event)}}
+        onChange={(event) => {setSearchText(event.target.value)}}
       />
       <List className='searchbar-not-found'>
         <ListItem title='Keine Suchergebnisse...'></ListItem>
