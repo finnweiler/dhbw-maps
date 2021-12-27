@@ -40,3 +40,5 @@ Thumbs.db
 
 # Production build
 www/
+
+package-lock.json
