@@ -23,7 +23,7 @@ const Map = () => {
 
   return (
     <div>
-      {userPosition !== null ? 
+      {userPosition !== null ?
         <MapContainer 
           zoom={14}
           minZoom={4}
