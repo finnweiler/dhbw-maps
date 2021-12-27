@@ -42,3 +42,8 @@ Thumbs.db
 www/
 
 package-lock.json
+
+
+# Firebase
+
+*.cache
