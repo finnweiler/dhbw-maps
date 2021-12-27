@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
-import RoutingMachine from './RoutingMachine'
+import { MapContainer, TileLayer } from 'react-leaflet'
+import Routing from './RoutingMachine'
+
 
 const Map = () => {
   let [userPosition, setUserPosition] = useState(null)
@@ -9,7 +10,7 @@ const Map = () => {
     // https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/Using_geolocation
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(position => {
-        let coords = [position.coords.latitude, position.coords.longitude]
+        let coords = {lat: position.coords.latitude, lng: position.coords.longitude}
         setUserPosition(coords)
       })
     } else {
@@ -29,7 +30,7 @@ const Map = () => {
           zoom={14}
           minZoom={4}
           scrollWheelZoom={true}
-          center={userPosition}
+          center={[userPosition.lat, userPosition.lng]}
           whenCreated={(map) => { setTimeout(() => map.invalidateSize(), 1000) }}
           style={{height: '100vh'}}
         >
@@ -37,12 +38,8 @@ const Map = () => {
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
-          <RoutingMachine destination={{lng: 0, lat: 50}} />
-          <Marker position={[51.505, -0.09]}>
-            <Popup>
-              A pretty CSS3 popup. <br /> Easily customizable.
-            </Popup>
-          </Marker>
+          
+          <Routing user={userPosition}></Routing>
         </MapContainer>
         :
         null
