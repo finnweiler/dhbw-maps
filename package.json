@@ -9,6 +9,7 @@
     "start": "npm run dev",
     "dev": "cross-env NODE_ENV=development vite",
     "build": "cross-env NODE_ENV=production vite build && npx workbox generateSW workbox-config.js",
+    "lint": "npx eslint --fix --ext .js,.jsx .",
     "postinstall": "cpy ./node_modules/framework7-icons/fonts/*.* ./src/fonts/ && cpy ./node_modules/material-icons/iconfont/*.* ./src/fonts/"
   },
   "browserslist": [
@@ -21,7 +22,6 @@
   ],
   "dependencies": {
     "dom7": "^3.0.0",
-    "eslint": "^8.5.0",
     "framework7": "^6.3.12",
     "framework7-icons": "^5.0.5",
     "framework7-react": "^6.3.12",
@@ -36,6 +36,9 @@
     "@vitejs/plugin-react-refresh": "^1.3.6",
     "cpy-cli": "^3.1.1",
     "cross-env": "^7.0.3",
+    "eslint": "^8.5.0",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-react": "^7.28.0",
     "postcss-preset-env": "^6.7.0",
     "sass": "^1.45.1",
     "vite": "^2.7.7",

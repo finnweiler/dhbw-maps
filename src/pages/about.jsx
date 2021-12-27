@@ -1,5 +1,5 @@
-import React from 'react';
-import { Page, Navbar, Block, BlockTitle } from 'framework7-react';
+import React from 'react'
+import { Page, Navbar, Block, BlockTitle } from 'framework7-react'
 
 const AboutPage = () => (
   <Page>
@@ -15,6 +15,6 @@ const AboutPage = () => (
       <p>Blanditiis, cumque quo adipisci. Molestiae, dolores dolorum quos doloremque ipsa ullam eligendi commodi deserunt doloribus inventore magni? Ea mollitia veniam nostrum nihil, iusto doloribus a at! Ea molestiae ullam delectus!</p>
     </Block>
   </Page>
-);
+)
 
-export default AboutPage;
+export default AboutPage

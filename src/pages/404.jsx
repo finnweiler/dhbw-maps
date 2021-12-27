@@ -1,5 +1,5 @@
-import React from 'react';
-import { Page, Navbar, Block } from 'framework7-react';
+import React from 'react'
+import { Page, Navbar, Block } from 'framework7-react'
 
 const NotFoundPage = () => (
   <Page>
@@ -9,6 +9,6 @@ const NotFoundPage = () => (
       <p>Requested content not found.</p>
     </Block>
   </Page>
-);
+)
 
-export default NotFoundPage;
+export default NotFoundPage

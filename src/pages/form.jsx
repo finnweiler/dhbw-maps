@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import {
   Page,
   Navbar,
@@ -11,7 +11,7 @@ import {
   Button,
   Range,
   Block
-} from 'framework7-react';
+} from 'framework7-react'
 
 const FormPage = () => (
   <Page name="form">
@@ -52,7 +52,7 @@ const FormPage = () => (
       <ListInput
         label="Gender"
         type="select"
-        >
+      >
         <option>Male</option>
         <option>Female</option>
       </ListInput>
@@ -170,6 +170,6 @@ const FormPage = () => (
       ></ListItem>
     </List>
   </Page>
-);
+)
 
-export default FormPage;
+export default FormPage

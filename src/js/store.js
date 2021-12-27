@@ -1,5 +1,5 @@
 
-import { createStore } from 'framework7/lite';
+import { createStore } from 'framework7/lite'
 
 const store = createStore({
   state: {
@@ -23,13 +23,13 @@ const store = createStore({
   },
   getters: {
     products({ state }) {
-      return state.products;
+      return state.products
     }
   },
   actions: {
     addProduct({ state }, product) {
-      state.products = [...state.products, product];
+      state.products = [...state.products, product]
     },
   },
 })
-export default store;
+export default store

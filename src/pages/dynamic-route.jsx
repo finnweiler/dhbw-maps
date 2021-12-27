@@ -1,8 +1,8 @@
-import React from 'react';
-import { Page, Navbar, Block, Link } from 'framework7-react';
+import React from 'react'
+import { Page, Navbar, Block, Link } from 'framework7-react'
 
 const DynamicRoutePage = (props) => {
-  const { f7route, f7router } = props;
+  const { f7route, f7router } = props
   return (
     <Page>
       <Navbar title="Dynamic Route" backLink="Back" />
@@ -32,7 +32,7 @@ const DynamicRoutePage = (props) => {
         <Link onClick={() => f7router.back()}>Go back via Router API</Link>
       </Block>
     </Page>
-  );
+  )
 }
 
-export default DynamicRoutePage;
+export default DynamicRoutePage
