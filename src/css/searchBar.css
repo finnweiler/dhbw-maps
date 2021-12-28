@@ -1,0 +1,21 @@
+.customSearchBarMar {
+    padding: 5px 15px;
+    font-size: 14pt;
+    width: 100%;
+    background: rgba(0,0,0,.7);
+    color: #fff;
+    border: none;
+}
+
+.searchBarResult{
+    background: black;
+    transition: background 0.25s ease-in-out;
+    width: 100%;
+}
+
+.searchBarResult:hover{
+    background: rgb(54, 54, 54);
+    transition: background 0.25s ease-in-out;
+    cursor: pointer;
+    width: 100%;
+}
