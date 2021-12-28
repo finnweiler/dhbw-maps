@@ -26,6 +26,7 @@
     "framework7-icons": "^5.0.5",
     "framework7-react": "^6.3.12",
     "leaflet": "^1.7.1",
+    "localforage": "^1.10.0",
     "material-icons": "^1.10.4",
     "prop-types": "^15.8.0",
     "react": "^17.0.2",

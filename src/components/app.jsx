@@ -2,7 +2,11 @@ import React from 'react'
 import { App } from 'framework7-react'
 import routes from '../js/routes'
 import store from '../js/store'
+import localforage from 'localforage'
+//Own components
 import Map from './map'
+import SearchBar from './searchBar'
+
 
 const LocationBasedService = () => {
   // Framework7 Parameters
@@ -20,8 +24,11 @@ const LocationBasedService = () => {
     } : {},
   }
 
+  localforage.setDriver(localforage.INDEXEDDB)
+
   return (
     <App { ...f7params } themeDark>
+      <SearchBar />
       <Map />
     </App>
   )
