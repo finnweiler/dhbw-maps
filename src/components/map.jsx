@@ -4,11 +4,11 @@ import Routing from './RoutingMachine'
 
 class Map extends React.Component{
   //the default location is the dhbw friedrichshafen
+  def_lat = 47.665753037254085
+  def_lng = 9.447255091829561
   state = {
-    current_state: 'default',
-    map: null,
-    lat: 47.665753037254085,
-    lng: 9.447255091829561
+    lat: this.def_lat,
+    lng: this.def_lng
   }
 
   getUserLocation(){
@@ -17,12 +17,9 @@ class Map extends React.Component{
       navigator.geolocation.getCurrentPosition(position => {
         //seting the state automatically refreshes the component
         this.setState({
-          current_state: 'gps',
-          map: null,
           lat: position.coords.latitude,
           lng: position.coords.longitude
         })
-        console.log('set new state')
       })
     } else {
       // Browser doesn't support Geolocation
@@ -31,13 +28,13 @@ class Map extends React.Component{
   }
 
   render() {
-    console.log('render')
     //get user location if currently the default location is used
-    if (this.state.current_state == 'default'){
+
+    if (this.state.lat === this.def_lat && this.state.lng == this.def_lng){
       this.getUserLocation()
     }
     //fly to current location if the map component is set and the gps location is set
-    else if (this.map != null){
+    else if (this.map !== null){
       this.map.flyTo([this.state.lat, this.state.lng], 14)
     }
     //return map container
