@@ -51,7 +51,6 @@ async function getCityData (city) {
 
   // Return the data
   return res
-    
 }
 
 async function getWikiData (city) {
