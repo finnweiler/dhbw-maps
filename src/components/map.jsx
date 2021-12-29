@@ -42,7 +42,21 @@ const Map = () => {
           <Routing user={userPosition}></Routing>
         </MapContainer>
         :
-        null
+         <MapContainer 
+          zoom={14}
+          minZoom={4}
+          scrollWheelZoom={true}
+          center={[47.66574477183747, 9.447262549115813]}
+          whenCreated={(map) => { setTimeout(() => map.invalidateSize(), 1000) }}
+          style={{height: '100vh'}}
+        >
+          <TileLayer
+            attribution='&copy; <a href="https://www.openstreetmap.org/copyright%22%3EOpenStreetMap</a> contributors'
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          />
+
+          <Routing user={userPosition}></Routing>
+        </MapContainer>
       }
     </div>
   )
