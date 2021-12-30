@@ -6,6 +6,8 @@ class Map extends React.Component{
   //the default location is the dhbw friedrichshafen
   def_lat = 47.665753037254085
   def_lng = 9.447255091829561
+
+  //first set the default location as currtent location
   state = {
     lat: this.def_lat,
     lng: this.def_lng
