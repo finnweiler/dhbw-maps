@@ -12,8 +12,7 @@ const Routing = (props) => {
       if (last) {map.removeControl(last)}
 
       last = L.Routing.control({
-        waypoints: [L.latLng(props.user.lat, props.user.lng), L.latLng(e.latlng.lat, e.latlng.lng)],
-        routeWhileDragging: true
+        waypoints: [L.latLng(props.user.lat, props.user.lng), L.latLng(e.latlng.lat, e.latlng.lng)]
       }).addTo(map)
     }
   })
