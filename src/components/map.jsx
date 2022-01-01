@@ -32,7 +32,7 @@ class Map extends React.Component{
   render() {
     //get user location if currently the default location is used
 
-    if (this.state.lat === this.def_lat && this.state.lng == this.def_lng){
+    if (this.state.lat === this.def_lat && this.state.lng === this.def_lng){
       this.getUserLocation()
     }
     //fly to current location if the map component is set and the gps location is set
@@ -41,27 +41,24 @@ class Map extends React.Component{
     }
     //return map container
     return (
-      <div>
-        {<MapContainer 
-          zoom={14}
-          minZoom={4}
-          scrollWheelZoom={true}
-          center={[this.state.lat, this.state.lng]}
-          whenCreated={(lmap) => {
-            setTimeout(() => lmap.invalidateSize(), 1000)
-            this.map = lmap
-          }}
-          style={{height: '100vh'}}
-        >
-          <TileLayer
-            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          />
+      <MapContainer 
+        zoom={14}
+        minZoom={4}
+        scrollWheelZoom={true}
+        center={[this.state.lat, this.state.lng]}
+        whenCreated={(lmap) => {
+          setTimeout(() => lmap.invalidateSize(), 1000)
+          this.map = lmap
+        }}
+        style={{height: '100vh'}}
+      >
+        <TileLayer
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        />
           
-          <Routing user={{lat: this.state.lat, lng: this.state.lng}}></Routing>
-        </MapContainer>
-        }
-      </div>
+        <Routing user={this.state}></Routing>
+      </MapContainer>
     )
   }
 }
