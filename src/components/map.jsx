@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react'
-import { MapContainer, TileLayer, useMap } from 'react-leaflet'
+import React from 'react'
+import { MapContainer, TileLayer } from 'react-leaflet'
 import Routing from './RoutingMachine'
 
 class Map extends React.Component{
