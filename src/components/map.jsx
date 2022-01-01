@@ -13,33 +13,40 @@ class Map extends React.Component{
     lng: this.def_lng
   }
 
+  locationChanged(newLocation) {
+    return this.state !== newLocation
+  }
+
   getUserLocation(){
     // https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/Using_geolocation
     if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(position => {
-        //seting the state automatically refreshes the component
-        this.setState({
+      return navigator.geolocation.getCurrentPosition(position => {
+        let current = {
           lat: position.coords.latitude,
           lng: position.coords.longitude
-        })
+        }
+
+        if (this.locationChanged(current)) {
+          // the new user location is saved and the map recentered
+          this.setState({
+            lat: position.coords.latitude,
+            lng: position.coords.longitude
+          })
+          this.map.flyTo([this.state.lat, this.state.lng], 14)
+        }
       })
     } else {
       // Browser doesn't support Geolocation
       alert('Dein Browser unterstützt Geolocation nicht.')
-    } 
+    }
+  }
+
+  componentDidMount() {
+    // use mount hook to load current position after component did mount
+    this.getUserLocation()
   }
 
   render() {
-    //get user location if currently the default location is used
-
-    if (this.state.lat === this.def_lat && this.state.lng === this.def_lng){
-      this.getUserLocation()
-    }
-    //fly to current location if the map component is set and the gps location is set
-    else if (this.map !== null){
-      this.map.flyTo([this.state.lat, this.state.lng], 14)
-    }
-    //return map container
     return (
       <MapContainer 
         zoom={14}
