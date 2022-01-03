@@ -1,6 +1,5 @@
 import axios from 'axios'
 
-// Maximum number of characters in the summary
 const SERVERLESS_URL = null
 
 async function getWikiData (city) {
