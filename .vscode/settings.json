@@ -1,6 +1,7 @@
 {
     "conventionalCommits.scopes": [
         "searchBar",
-        "wikipedia"
+        "wikipedia",
+        "cloud-function"
     ]
 }
