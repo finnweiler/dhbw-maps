@@ -11,7 +11,6 @@ const BUILD_DIR = path.resolve(__dirname, './www',)
 export default {
   plugins: [
     reactRefresh(),
-
   ],
   root: SRC_DIR,
   base: '',
