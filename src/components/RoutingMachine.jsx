@@ -64,26 +64,33 @@ const Routing = (props) => {
         }
       }).addTo(map)
 
-
-      // Get JSON Object fpr routePanel
-      let routeItem = last?._selectedRoute
-      if (routeItem != null) {
-        let name = routeItem.name
-        let summary = routeItem.summary
-        let instructions = routeItem.instructions
-    
-        let routeObject = {
-          name: name,
-          summary: summary,
-          instructions: instructions
-        }
-        console.log(routeObject)
-      }
+      // Load Instructions in Storage
+      loadInstructions()
 
     }
   })
 
   return null
+
 }
+
+function loadInstructions() {
+  let routeItem = last?._selectedRoute
+  if (routeItem != null) {
+    let name = routeItem.name
+    let summary = routeItem.summary
+    let instructions = routeItem.instructions
+
+    let routeObject = {
+      name: name,
+      summary: summary,
+      instructions: instructions
+    }
+    console.log(routeObject)
+  } else {
+    setTimeout(loadInstructions, 100);
+  }
+}
+
 
 export default Routing
