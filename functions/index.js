@@ -1,9 +1,9 @@
 const functions = require('firebase-functions');
-const WBK = require('wikidata-sdk');
+const WBK = require('wikibase-sdk');
 const axios = require('axios').default;
 const wiki = require('wikijs').default;
 
-const MAX_CHARACTERS_SUMMARY = 200;
+const MAX_CHARS_SUMMARY = 200;
 const LANGUAGE_SUMMARY = 'de'
 
 // This initializes the wikidata-sdk library
@@ -16,11 +16,16 @@ const wbk = WBK({
 // // Create and Deploy Your First Cloud Functions
 // // https://firebase.google.com/docs/functions/write-firebase-functions
 //
-exports.helloWorld = functions.https.onRequest((request, response) => {
+exports.getWikiData = functions.region('europe-west1').https.onRequest( async (request, response) => {
 
   // e.g.: ?city=London
-  const city = req.query.city;
+  const city = request.query.city;
   let output = {}
+
+  if (!city || city.length < 1) {
+    response.status(400).send('Please provide a city');
+    return;
+  }
 
   // Get the city data from the SPARQL query
   let sparqlQuery = `
@@ -58,7 +63,8 @@ exports.helloWorld = functions.https.onRequest((request, response) => {
     })
   } catch (error) {
     functions.logger.error(error, {structuredData: true});
-    response.send(error);
+    response.status(400).send(error);
+    return
   }
 
   output.population = cityData.population?.value
