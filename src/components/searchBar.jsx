@@ -3,7 +3,6 @@ import { List, ListItem } from 'framework7-react'
 import { FaSearch } from 'react-icons/fa'
 import localforage from 'localforage'
 import '../css/searchBar.css'
-import getWikiData from '../js/wikipedia.js'
 
 const SearchBar = () => {
   let [searchText, setSearchText] = useState('')
@@ -11,10 +10,6 @@ const SearchBar = () => {
   let [height, setHeight] = useState(0)
 
   const loadSearchHistory = () => {
-
-    getWikiData('Ostrach').then(data => {
-      console.log(data)
-    })
 
     localforage.getItem('searchHistory').then(array => {
       if (array) {
