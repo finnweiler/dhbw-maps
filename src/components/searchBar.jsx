@@ -1,13 +1,21 @@
 import React, { useState, useEffect } from 'react'
-import { Searchbar, List, ListItem, theme } from 'framework7-react'
+import { List, ListItem } from 'framework7-react'
+import { FaSearch } from 'react-icons/fa'
 import localforage from 'localforage'
 import '../css/searchBar.css'
+import getWikiData from '../js/wikipedia.js'
 
 const SearchBar = () => {
   let [searchText, setSearchText] = useState('')
   let [searchHistory, setSearchHistory] = useState([])
+  let [height, setHeight] = useState(0)
 
   const loadSearchHistory = () => {
+
+    getWikiData('Ostrach').then(data => {
+      console.log(data)
+    })
+
     localforage.getItem('searchHistory').then(array => {
       if (array) {
         setSearchHistory(array)
@@ -17,6 +25,7 @@ const SearchBar = () => {
     })
   }
 
+  // eslint-disable-next-line no-unused-vars
   const clickedListItem = (historyEntry) => {
     // TODO: Send entry to reverse geocoding
 
@@ -37,6 +46,7 @@ const SearchBar = () => {
 
   useEffect(() => {
     loadSearchHistory()
+    setHeight(document.getElementById('customSearchBarInputEl').clientHeight)
   }, [])
 
   const Results = () => {
@@ -58,12 +68,16 @@ const SearchBar = () => {
 
   return (
     <div style={{zIndex: 1000, position: 'absolute', width: '50%', left: '50%', top: '1%', transform: 'translate(-50%,0)'}}>
-      <input 
-        className={'customSearchBarMar'} 
-        placeholder="Search for a location..." 
-        onChange={event => setSearchText(event.target.value)}
-        onKeyUp={event => handleSearch(event)}
-      ></input>
+      <form className={'customSearchBarWrapper'}>
+        <input 
+          id={'customSearchBarInputEl'}
+          className={'customSearchBarMar'} 
+          placeholder={'Search for a location'}
+          onChange={event => setSearchText(event.target.value)}
+          onKeyUp={event => handleSearch(event)}
+        ></input>
+        <button style={{height: height}} className={'customSearchBarButton'}><FaSearch /></button>
+      </form>
       <div style={{ display: searchText ? 'block' : 'none' }}>
         <List className='search-list searchbar-found' style={{ margin: 0 }}>
           <Results />
