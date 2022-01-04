@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { List, ListItem } from 'framework7-react'
+import { Block, List, ListItem, Button, Icon } from 'framework7-react'
 import notification_bell from '../notification_icons/bell_icon.png' // relative path to image 
 
 class NotificationButton extends React.Component{
@@ -56,11 +56,12 @@ class NotificationButton extends React.Component{
 
   render(){
     return (
-      <div>
-        <button onClick={this.toggle_notifications}>Notifications</button>
-        <i className="icon icon-back"></i>
-      </div>
-      
+      <Block>
+        <link rel="stylesheet" href="../css/icons.css"></link>
+        <Button fill raised 
+          onClick={() => {this.toggle_notifications()}}>
+        <Icon f7="bell_fill"></Icon></Button>
+      </Block>
     )
   }
 }
