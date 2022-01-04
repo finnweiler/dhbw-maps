@@ -7,6 +7,7 @@ import localforage from 'localforage'
 import Map from './map'
 import SearchBar from './searchBar'
 import RoutePanel from './routePanel'
+import WikiPanel from './wikiPanel'
 
 const LocationBasedService = () => {
   // Framework7 Parameters
@@ -31,6 +32,7 @@ const LocationBasedService = () => {
       <SearchBar />
       <PanelButton />
       <RoutePanel />
+      <WikiPanel city={'Pfullendorf'} />
       <Map />
     </App>
   )
