@@ -29,8 +29,7 @@ const LocationBasedService = () => {
 
   return (
     <App { ...f7params } themeDark>
-      <SearchBar />
-      <Button fill raised panelOpen="left">Left Panel</Button>
+      <SearchBar />   
       <NotificationButton />
       <WikiPanel city={'Pfullendorf'} />
       <Map />
