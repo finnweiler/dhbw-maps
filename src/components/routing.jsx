@@ -19,40 +19,24 @@ const Routing = (props) => {
         language: 'de',
         formatter:  new L.Routing.Formatter({ language: 'de' }),
         waypoints: [L.latLng(props.user.lat, props.user.lng), L.latLng(e.latlng.lat, e.latlng.lng)],
-        createMarker: function (i, waypoint, n) {
+        createMarker: (i, waypoint, n) => {
           let marker = null
           if (i < n - 1) {
             marker = L.marker(waypoint.latLng, {
               draggable: true,
-              bounceOnAdd: false,
-              bounceOnAddOptions: {
-                duration: 1000,
-                height: 800,
-                function() {
-                  (bindPopup(myPopup).openOn(map))
-                }
-              },
               icon: L.icon({
-                iconUrl: '/icons/favicon.png',
-                iconSize: [100, 95],
-                iconAnchor: [22, 94],
+                iconUrl: '/icons/red_marker.png',
+                iconSize: [29, 50],
+                iconAnchor: [15, 49],
               })
             })
           } else {
             marker = L.marker(waypoint.latLng, {
               draggable: true,
-              bounceOnAdd: false,
-              bounceOnAddOptions: {
-                duration: 1000,
-                height: 800,
-                function() {
-                  (bindPopup(myPopup).openOn(map))
-                }
-              },
               icon: L.icon({
-                iconUrl: '/icons/icons8-destination-96.png',
-                iconSize: [38, 95],
-                iconAnchor: [22, 94],
+                iconUrl: '/icons/blue_marker.png',
+                iconSize: [29, 50],
+                iconAnchor: [15, 49],
               })
             })
           }
