@@ -7,6 +7,7 @@ import localforage from 'localforage'
 import Map from './map'
 import SearchBar from './searchBar'
 import WikiPanel from './wikiPanel'
+import NotificationButton from './notificationButton'
 
 const LocationBasedService = () => {
   // Framework7 Parameters
@@ -30,6 +31,7 @@ const LocationBasedService = () => {
     <App { ...f7params } themeDark>
       <SearchBar />
       <Button fill raised panelOpen="left">Left Panel</Button>
+      <NotificationButton />
       <WikiPanel city={'Pfullendorf'} />
       <Map />
     </App>
