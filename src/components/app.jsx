@@ -9,6 +9,14 @@ import SearchBar from './searchBar'
 import RoutePanel from './routePanel'
 import WikiPanel from './wikiPanel'
 
+const PanelButton = () => {
+  const route = useStore('route')
+
+  return (
+    <Button fill raised panelOpen="right" disabled={!route}>Route anzeigen</Button>
+  )
+}
+
 const LocationBasedService = () => {
   // Framework7 Parameters
   const f7params = {
@@ -26,23 +34,16 @@ const LocationBasedService = () => {
   }
 
   localforage.setDriver(localforage.INDEXEDDB)
+  localforage.setItem('wikiPanelOpened', false)
 
   return (
     <App { ...f7params } themeDark>
       <SearchBar />
       <PanelButton />
       <RoutePanel />
-      <WikiPanel city={'Pfullendorf'} />
+      <WikiPanel />
       <Map />
     </App>
-  )
-}
-
-const PanelButton = () => {
-  const route = useStore('route')
-
-  return (
-    <Button fill raised panelOpen="right" disabled={!route}>Route anzeigen</Button>
   )
 }
 
