@@ -1,5 +1,5 @@
 import React from 'react'
-import { App, Button } from 'framework7-react'
+import { App, Button, useStore } from 'framework7-react'
 import routes from '../js/routes'
 import store from '../js/store'
 import localforage from 'localforage'
@@ -27,12 +27,20 @@ const LocationBasedService = () => {
   localforage.setDriver(localforage.INDEXEDDB)
 
   return (
-    <App { ...f7params } themeDark>
+    <App { ...f7params } themeDark store={store}>
       <SearchBar />
-      <Button fill raised panelOpen="right">Route anzeigen</Button>
+      <PanelButton />
       <RoutePanel />
       <Map />
     </App>
+  )
+}
+
+const PanelButton = () => {
+  const route = useStore('route')
+
+  return (
+    <Button fill raised panelOpen="right" disabled={!route}>Route anzeigen</Button>
   )
 }
 
