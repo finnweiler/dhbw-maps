@@ -27,7 +27,7 @@ const LocationBasedService = () => {
   localforage.setDriver(localforage.INDEXEDDB)
 
   return (
-    <App { ...f7params } themeDark store={store}>
+    <App { ...f7params } themeDark>
       <SearchBar />
       <PanelButton />
       <RoutePanel />
