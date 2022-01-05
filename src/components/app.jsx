@@ -10,14 +10,6 @@ import RoutePanel from './routePanel'
 import WikiPanel from './wikiPanel'
 import NotificationButton from './notificationButton'
 
-const PanelButton = () => {
-  const route = useStore('route')
-
-  return (
-    <Button fill raised panelOpen="right" disabled={!route}>Route anzeigen</Button>
-  )
-}
-
 const LocationBasedService = () => {
   // Framework7 Parameters
   const f7params = {
@@ -41,7 +33,6 @@ const LocationBasedService = () => {
     <App { ...f7params } themeDark>
       <SearchBar />   
       <NotificationButton />
-      <PanelButton />
       <RoutePanel />
       <WikiPanel />
       <Map />
