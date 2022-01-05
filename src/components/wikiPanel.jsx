@@ -1,6 +1,7 @@
 import React from 'react'
 import { Panel, View, Page, Navbar, Block, BlockTitle, Button, Icon, Preloader } from 'framework7-react'
 import localforage from 'localforage'
+import store from '../js/store'
 
 class WikiPanel extends React.Component {
   constructor(props) {
@@ -53,7 +54,13 @@ class WikiPanel extends React.Component {
     window.open(this.state.wikiData.url, '_blank')
   }
   StartRoute = () =>{
-    window.open('https://www.ravensburg.dhbw.de/fileadmin/Ravensburg/Dokumente_Bilder_Contentbereich/Pruefungsamt/DHBW_RV_Pruefungsamt_Exmatrikulation_Antrag.pdf')
+    const position = {
+      lat: this.state.wikiData.lat,
+      lng: this.state.wikiData.lon
+    }
+    
+    store.dispatch('newAddress', position)
+    // window.open('https://www.ravensburg.dhbw.de/fileadmin/Ravensburg/Dokumente_Bilder_Contentbereich/Pruefungsamt/DHBW_RV_Pruefungsamt_Exmatrikulation_Antrag.pdf')
   }
   
   render() {
