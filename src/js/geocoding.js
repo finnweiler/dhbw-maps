@@ -3,9 +3,6 @@ export function ReverseGeocoding(lng, lat){
     .then(function(response){
       return response.json()
     })
-    .then(function(json){
-      return json.address
-    })
   return location
 }
 

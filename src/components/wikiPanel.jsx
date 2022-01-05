@@ -71,6 +71,12 @@ class WikiPanel extends React.Component {
             <Navbar title={this.state.wikiData.city}/>
             {this.state.loadedData ?
               <Block>
+                <BlockTitle>Adresse</BlockTitle>
+                <Block><p>{this.state.wikiData.address}</p></Block>
+                <Button fill raised
+                  style={{marginTop: '10px'}}
+                  onClick={() => {this.StartRoute()}}
+                ><Icon f7="location" size="18" style={{marginRight: '10px'}} />Route starten</Button>
                 <img src={this.state.wikiData.image} width='225' />
                 <BlockTitle>{this.state.wikiData.city}</BlockTitle>
                 <Block strong>
@@ -83,10 +89,6 @@ class WikiPanel extends React.Component {
                 <Button fill raised
                   onClick={() => {this.OpenWikipedia()}}
                 ><Icon f7='escape' size='18' style={{marginRight: '10px'}} />Mehr lesen</Button>
-                <Button fill raised
-                  style={{marginTop: '10px'}}
-                  onClick={() => {this.StartRoute()}}
-                ><Icon f7="location" size="18" style={{marginRight: '10px'}} />Route starten</Button>
               </Block>
               :
               <Block>
