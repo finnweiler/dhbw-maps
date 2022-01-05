@@ -95,7 +95,7 @@ class WikiPanel extends React.Component {
                 <Block><p>{this.state.wikiData.summary}</p></Block>
                 <Button fill raised
                   onClick={() => {this.OpenWikipedia()}}
-                ><Icon f7='escape' size='18' style={{marginRight: '10px'}} />Mehr lesen</Button>
+                ><Icon f7='info_circle' size='18' style={{marginRight: '10px'}} />Mehr lesen</Button>
               </Block>
               :
               <Block>
