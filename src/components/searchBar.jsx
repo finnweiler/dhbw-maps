@@ -24,7 +24,7 @@ const SearchBar = () => {
   }
 
   const handleSearch = async (entryText) => {
-    console.log(entryText)
+
     if (entryText !== '') {
       setShowResults(false)
       let foundSearchTextInSearchHistory = false
