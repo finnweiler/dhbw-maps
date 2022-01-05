@@ -1,6 +1,6 @@
 import React from 'react'
 import { MapContainer, TileLayer } from 'react-leaflet'
-import Routing from './RoutingMachine'
+import Routing from './routing'
 
 class Map extends React.Component{
   //the default location is the dhbw friedrichshafen

@@ -1,11 +1,12 @@
 import React from 'react'
-import { App, Button } from 'framework7-react'
+import { App, Button, useStore } from 'framework7-react'
 import routes from '../js/routes'
 import store from '../js/store'
 import localforage from 'localforage'
 //Own components
 import Map from './map'
 import SearchBar from './searchBar'
+import RoutePanel from './routePanel'
 import WikiPanel from './wikiPanel'
 import NotificationButton from './notificationButton'
 
@@ -31,9 +32,19 @@ const LocationBasedService = () => {
     <App { ...f7params } themeDark>
       <SearchBar />   
       <NotificationButton />
+      <PanelButton />
+      <RoutePanel />
       <WikiPanel city={'Pfullendorf'} />
       <Map />
     </App>
+  )
+}
+
+const PanelButton = () => {
+  const route = useStore('route')
+
+  return (
+    <Button fill raised panelOpen="right" disabled={!route}>Route anzeigen</Button>
   )
 }
 
