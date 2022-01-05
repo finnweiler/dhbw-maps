@@ -10,6 +10,14 @@ import RoutePanel from './routePanel'
 import WikiPanel from './wikiPanel'
 import NotificationButton from './notificationButton'
 
+const PanelButton = () => {
+  const route = useStore('route')
+
+  return (
+    <Button fill raised panelOpen="right" disabled={!route}>Route anzeigen</Button>
+  )
+}
+
 const LocationBasedService = () => {
   // Framework7 Parameters
   const f7params = {
@@ -27,6 +35,7 @@ const LocationBasedService = () => {
   }
 
   localforage.setDriver(localforage.INDEXEDDB)
+  localforage.setItem('wikiPanelOpened', false)
 
   return (
     <App { ...f7params } themeDark>
@@ -34,17 +43,9 @@ const LocationBasedService = () => {
       <NotificationButton />
       <PanelButton />
       <RoutePanel />
-      <WikiPanel city={'Pfullendorf'} />
+      <WikiPanel />
       <Map />
     </App>
-  )
-}
-
-const PanelButton = () => {
-  const route = useStore('route')
-
-  return (
-    <Button fill raised panelOpen="right" disabled={!route}>Route anzeigen</Button>
   )
 }
 

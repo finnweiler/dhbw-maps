@@ -28,6 +28,7 @@
     background: black;
     transition: background 0.25s ease-in-out;
     width: 100%;
+    list-style-type: none;
 }
 
 .searchBarResult:hover{
