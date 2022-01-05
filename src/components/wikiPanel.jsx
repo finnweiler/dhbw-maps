@@ -52,6 +52,9 @@ class WikiPanel extends React.Component {
   OpenWikipedia = () => {
     window.open(this.state.wikiData.url, '_blank')
   }
+  StartRoute = () =>{
+    window.open('https://www.ravensburg.dhbw.de/fileadmin/Ravensburg/Dokumente_Bilder_Contentbereich/Pruefungsamt/DHBW_RV_Pruefungsamt_Exmatrikulation_Antrag.pdf')
+  }
   
   render() {
     return (
@@ -85,6 +88,15 @@ class WikiPanel extends React.Component {
               <Block strong className="text-align-center">
                 <Preloader color="blue" />
               </Block>
+              <Block><p>{this.state.wikiData.summary}</p></Block>
+              <Button fill raised
+                onClick={() => {this.OpenWikipedia()}}
+              ><Icon f7="info_circle" size="18" style={{marginRight: '10px'}} />Mehr lesen</Button>
+              <Button fill raised
+                style={{marginTop: '10px'}}
+                onClick={() => {this.StartRoute()}}
+              ><Icon f7="location" size="18" style={{marginRight: '10px'}} />Route starten</Button>
+            </Block>
             }
           </Page>
         </View>
