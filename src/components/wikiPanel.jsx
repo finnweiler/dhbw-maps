@@ -80,7 +80,7 @@ class WikiPanel extends React.Component {
                 <BlockTitle>Adresse</BlockTitle>
                 <Block><p>{this.state.wikiData.address}</p></Block>
                 <Button fill raised
-                  style={{marginTop: '10px'}}
+                  style={{marginTop: '10px', marginBottom: '10px'}}
                   onClick={() => {this.StartRoute()}}
                 ><Icon f7="location" size="18" style={{marginRight: '10px'}} />Route starten</Button>
                 <img src={this.state.wikiData.image} width='225' />
