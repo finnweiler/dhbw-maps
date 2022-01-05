@@ -31,59 +31,54 @@ class NotificationButton extends React.Component{
 
   //called periodically to send a notification if the location permission is not granted permanently 
   async notify_check(){
-    if (this.state.notification_activate){
+    //check the location permission state
+    let permission_state
+    await navigator.permissions.query({
+      name: 'geolocation'
+    }).then(permission =>
+      permission_state = permission.state           
+    )
+    
+    //define a function to open the location prompt
+    let click_function = function() {
+      navigator.geolocation.getCurrentPosition(() => {})
+    }
 
-      //check the location permission state
-      let permission_state
-      await navigator.permissions.query({
-        name: 'geolocation'
-      }).then(permission =>
-        permission_state = permission.state           
-      )
-      
-      //define a function to open the location prompt
-      let click_function = function() {
-        navigator.geolocation.getCurrentPosition(() => {})
-      }
-
-      //send a message based on the permission state
-      if(permission_state === 'denied'){
-        this.notify('Du hast den Standortzugriff verweigert!',
-          'Bitte aktiviere den Standortzugriff, um eine sinnvolle Routenplanung zu erhalten.',
-          location_icon,
-          click_function)
-      }
-      else if (permission_state === 'prompt'){
-        this.notify('Tipp: Nutzung vereinfachen!',
-          'Um eine schnelle Nutzung zu ermöglichen, erlaube einen dauerhaften Zugriff auf deinen Standort.',
-          location_icon,
-          click_function)
-      }
-    }   
+    //send a message based on the permission state
+    if(permission_state === 'denied'){
+      this.notify('Du hast den Standortzugriff verweigert!',
+        'Bitte aktiviere den Standortzugriff, um eine sinnvolle Routenplanung zu erhalten.',
+        location_icon,
+        click_function)
+    }
+    else if (permission_state === 'prompt'){
+      this.notify('Tipp: Nutzung vereinfachen!',
+        'Um eine schnelle Nutzung zu ermöglichen, erlaube einen dauerhaften Zugriff auf deinen Standort.',
+        location_icon,
+        click_function)
+    } 
   }
 
-  //call notify_check every 5 Minutes
-  componentDidMount() {
-    this.interval = setInterval(() => {
-      this.notify_check()
-    }, 300000)
-  }
-  
-  //clear Interval if component unmounted
-  componentWillUnmount() {
-    clearInterval(this.interval)
-  }
-
-  toggle_notifications(){
-    //send notification if notifications get activated
+  toggle_notifications(){   
     if(!this.state.notification_activate)
     {
+      //send notification if notifications get activated
       this.notify('Benachrichtigungen aktiviert!',
         'Vielen Dank für das Aktivieren der Benachrichtigungen.',
         notification_bell,
         null)
+      
+      // call notify_check every 5 Minutes
+      this.interval = setInterval(() => {
+        this.notify_check()
+      }, 300000)
+    }
+    else{
+      //deactivate the periodically call of notify_check
+      clearInterval(this.interval)
     }
     
+    //change the state variable to change the icon
     this.setState(
       prevState => {
         return {
