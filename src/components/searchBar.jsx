@@ -43,7 +43,7 @@ const SearchBar = () => {
         const cityName = newGeolocation.address.city || newGeolocation.address.town || searchText
         let newWikiData = await getWikiData(cityName)
         console.log('save: ' + newGeolocation.display_name)
-        newWikiData = { ...newWikiData, city: cityName, cords: newCoords, address: newGeolocation.display_name }
+        newWikiData = { ...newWikiData, city: cityName, cords: newCoords, address: newGeolocation.display_name, lat: newCoords.lat, lon: newCoords.lon }
 
         let newHistoryEntry = {
           text: searchText,
