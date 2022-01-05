@@ -85,18 +85,19 @@ class WikiPanel extends React.Component {
                 ><Icon f7='escape' size='18' style={{marginRight: '10px'}} />Mehr lesen</Button>
               </Block>
               :
-              <Block strong className="text-align-center">
-                <Preloader color="blue" />
+              <Block>
+                <Block strong className="text-align-center">
+                  <Preloader color="blue" />
+                </Block>
+                <Block><p>{this.state.wikiData.summary}</p></Block>
+                <Button fill raised
+                  onClick={() => {this.OpenWikipedia()}}
+                ><Icon f7="info_circle" size="18" style={{marginRight: '10px'}} />Mehr lesen</Button>
+                <Button fill raised
+                  style={{marginTop: '10px'}}
+                  onClick={() => {this.StartRoute()}}
+                ><Icon f7="location" size="18" style={{marginRight: '10px'}} />Route starten</Button>
               </Block>
-              <Block><p>{this.state.wikiData.summary}</p></Block>
-              <Button fill raised
-                onClick={() => {this.OpenWikipedia()}}
-              ><Icon f7="info_circle" size="18" style={{marginRight: '10px'}} />Mehr lesen</Button>
-              <Button fill raised
-                style={{marginTop: '10px'}}
-                onClick={() => {this.StartRoute()}}
-              ><Icon f7="location" size="18" style={{marginRight: '10px'}} />Route starten</Button>
-            </Block>
             }
           </Page>
         </View>
