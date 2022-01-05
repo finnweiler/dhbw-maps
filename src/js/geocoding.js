@@ -9,15 +9,15 @@ export function ReverseGeocoding(lng, lat){
   return location
 }
 
-export function Geocoding(searchstring){
-  let coords = fetch('https://nominatim.openstreetmap.org/search?format=json&q=' + searchstring)
+export function Geocoding(searchString){
+  let coords = fetch('https://nominatim.openstreetmap.org/search?format=json&q=' + searchString)
     .then(function(response){
       return response.json()
     })
     .then(function(json){
+      let coords_lng = json[0].lon
       let coords_lat = json[0].lat
-      let coords_lng = json[0].lng
-      let coords_json = {'lat':coords_lat, 'lng':coords_lng}
+      let coords_json = {'lng': coords_lng, 'lat': coords_lat}
       return coords_json
     })
   return coords
