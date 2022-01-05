@@ -1,39 +1,49 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { MapContainer, TileLayer } from 'react-leaflet'
 import Routing from './routing'
+import { useStore } from 'framework7-react'
 
-class Map extends React.Component{
-  //the default location is the dhbw friedrichshafen
-  def_lat = 47.665753037254085
-  def_lng = 9.447255091829561
+const Map = () => {
+
+  // //the default location is the dhbw friedrichshafen
+  // def_lat = 47.665753037254085
+  // def_lng = 9.447255091829561
 
   //first set the default location as currtent location
-  state = {
-    lat: this.def_lat,
-    lng: this.def_lng
-  }
+  // state = {
+  //   lat: this.def_lat,
+  //   lng: this.def_lng
+  // }
+  
 
-  locationChanged(newLocation) {
-    return this.state !== newLocation
-  }
+  const [position, setPosition] = useState({lat: 47.665753037254085, lng: 9.447255091829561})
 
-  getUserLocation(){
+  const [map, setMap] = useState(null)
+
+  const destination = useStore('address')
+  console.log(destination)
+
+  // function locationChanged(newLocation) {
+  //   return this.state !== newLocation
+  // }
+
+
+  function getUserLocation(){
     // https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/Using_geolocation
     if (navigator.geolocation) {
-      return navigator.geolocation.getCurrentPosition(position => {
-        let current = {
+      navigator.geolocation.getCurrentPosition(position => {
+        const current = {
           lat: position.coords.latitude,
           lng: position.coords.longitude
         }
 
-        if (this.locationChanged(current)) {
+        // if (locationChanged(current)) {
           // the new user location is saved and the map recentered
-          this.setState({
-            lat: position.coords.latitude,
-            lng: position.coords.longitude
-          })
-          this.map.flyTo([this.state.lat, this.state.lng], 14)
-        }
+        setPosition(current)
+          // setLat(position.coords.latitude) 
+          // setLng(position.coords.longitude)
+      
+        // }
       })
     } else {
       // Browser doesn't support Geolocation
@@ -41,33 +51,43 @@ class Map extends React.Component{
     }
   }
 
-  componentDidMount() {
-    // use mount hook to load current position after component did mount
-    this.getUserLocation()
-  }
+  useEffect(() => {
+    getUserLocation()
+  }, [])
 
-  render() {
-    return (
-      <MapContainer 
-        zoom={14}
-        minZoom={4}
-        scrollWheelZoom={true}
-        center={[this.state.lat, this.state.lng]}
-        whenCreated={(lmap) => {
-          setTimeout(() => lmap.invalidateSize(), 1000)
-          this.map = lmap
-        }}
-        style={{height: '100vh'}}
-      >
-        <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        />
-          
-        <Routing user={this.state}></Routing>
-      </MapContainer>
-    )
-  }
+  useEffect(() => {
+    if (map != null) {
+      map.flyTo([position.lat, position.lng], 14)
+    }
+  }, [position])
+
+
+  // function componentDidMount() {
+  //   // use mount hook to load current position after component did mount
+  //   this.getUserLocation()
+  // }
+
+  return (
+    <MapContainer 
+      zoom={14}
+      minZoom={4}
+      scrollWheelZoom={true}
+      center={[position.lat, position.lng]}
+      whenCreated={(lmap) => {
+        setTimeout(() => lmap.invalidateSize(), 1000)
+        setMap(lmap)
+      }}
+      style={{height: '100vh'}}
+    >
+      <TileLayer
+        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+      />
+        
+      <Routing user={position}></Routing>
+    </MapContainer>
+  )
+
 }
 
 export default Map
