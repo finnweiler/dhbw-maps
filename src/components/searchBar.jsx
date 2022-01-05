@@ -40,7 +40,9 @@ const SearchBar = () => {
       if (!foundSearchTextInSearchHistory) {
         let newCoords = await Geocoding(searchText)
         let newGeolocation = await ReverseGeocoding(newCoords.lng, newCoords.lat)
-        let newWikiData = await getWikiData(newGeolocation.city || newGeolocation.town || searchText)
+        const cityName = newGeolocation.city || newGeolocation.town || searchText
+        let newWikiData = await getWikiData(cityName)
+        newWikiData = { ...newWikiData, city: cityName, cords: newCoords }
 
         let newHistoryEntry = {
           text: searchText,
