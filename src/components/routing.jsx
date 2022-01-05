@@ -48,6 +48,7 @@ const Routing = (props) => {
   
     control.on('routesfound', (e) => {
       store.dispatch('newRoute', e.routes[0])
+      store.dispatch('newPanelOpened', true)
     })
   }
 

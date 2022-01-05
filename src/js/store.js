@@ -5,7 +5,8 @@ const store = createStore({
   state: {
     route: null,
     routeControl: null,
-    address: null
+    address: null,
+    panelOpened: false,
   },
   getters: {
     route({ state }) {
@@ -17,6 +18,9 @@ const store = createStore({
     address({ state }) {
       return state.address
     },
+    panelOpened({ state }) {
+      return state.panelOpened
+    }
   },
   actions: {
     newRoute({ state }, route) {
@@ -28,6 +32,9 @@ const store = createStore({
     newAddress({ state }, address) {
       state.address = address
     },
+    newPanelOpened({ state }, panelOpened) {
+      state.panelOpened = panelOpened
+    }
   },
 })
 

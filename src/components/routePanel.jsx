@@ -1,16 +1,29 @@
 import React from 'react'
 import L from 'leaflet'
 import { Panel, View, Page, Navbar, Block, BlockTitle, useStore } from 'framework7-react'
+import store from '../js/store'
 
 
 const RoutePanel = () => {
 
   const route = useStore('route')
+  const panelOpened = useStore('panelOpened')
+  
   const formatter = new L.Routing.Formatter({language: 'de'})
 
-    
+  function PanelClosing() {
+    store.dispatch('newPanelOpened', false)
+  }
+
+
   return (
-    <Panel right cover themeDark>
+    <Panel 
+      right 
+      cover 
+      themeDark 
+      opened={panelOpened}
+      onPanelClose={() => {PanelClosing()}}
+    >
       <View>
         <Page>
           <Navbar title='Wegbeschreibung'/>

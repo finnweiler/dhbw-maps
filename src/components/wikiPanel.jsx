@@ -60,7 +60,6 @@ class WikiPanel extends React.Component {
     }
     
     store.dispatch('newAddress', position)
-    // window.open('https://www.ravensburg.dhbw.de/fileadmin/Ravensburg/Dokumente_Bilder_Contentbereich/Pruefungsamt/DHBW_RV_Pruefungsamt_Exmatrikulation_Antrag.pdf')
   }
   
   render() {

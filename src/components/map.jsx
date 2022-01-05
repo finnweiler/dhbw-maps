@@ -4,29 +4,9 @@ import Routing from './routing'
 import { useStore } from 'framework7-react'
 
 const Map = () => {
-
-  // //the default location is the dhbw friedrichshafen
-  // def_lat = 47.665753037254085
-  // def_lng = 9.447255091829561
-
-  //first set the default location as currtent location
-  // state = {
-  //   lat: this.def_lat,
-  //   lng: this.def_lng
-  // }
   
-
   const [position, setPosition] = useState({lat: 47.665753037254085, lng: 9.447255091829561})
-
   const [map, setMap] = useState(null)
-
-  const destination = useStore('address')
-  console.log(destination)
-
-  // function locationChanged(newLocation) {
-  //   return this.state !== newLocation
-  // }
-
 
   function getUserLocation(){
     // https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/Using_geolocation
@@ -37,13 +17,7 @@ const Map = () => {
           lng: position.coords.longitude
         }
 
-        // if (locationChanged(current)) {
-          // the new user location is saved and the map recentered
         setPosition(current)
-          // setLat(position.coords.latitude) 
-          // setLng(position.coords.longitude)
-      
-        // }
       })
     } else {
       // Browser doesn't support Geolocation
@@ -61,11 +35,6 @@ const Map = () => {
     }
   }, [position])
 
-
-  // function componentDidMount() {
-  //   // use mount hook to load current position after component did mount
-  //   this.getUserLocation()
-  // }
 
   return (
     <MapContainer 
