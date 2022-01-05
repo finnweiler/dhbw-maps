@@ -8,6 +8,7 @@ import Map from './map'
 import SearchBar from './searchBar'
 import RoutePanel from './routePanel'
 import WikiPanel from './wikiPanel'
+import NotificationButton from './notificationButton'
 
 const LocationBasedService = () => {
   // Framework7 Parameters
@@ -29,7 +30,8 @@ const LocationBasedService = () => {
 
   return (
     <App { ...f7params } themeDark>
-      <SearchBar />
+      <SearchBar />   
+      <NotificationButton />
       <PanelButton />
       <RoutePanel />
       <WikiPanel city={'Pfullendorf'} />
