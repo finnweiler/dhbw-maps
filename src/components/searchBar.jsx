@@ -5,6 +5,7 @@ import localforage from 'localforage'
 import '../css/searchBar.css'
 import { Geocoding, ReverseGeocoding } from '../js/geocoding'
 import getWikiData from '../js/wikipedia'
+import store from '../js/store'
 
 const SearchBar = () => {
   const [showResults, setShowResults] = useState(true)
@@ -73,7 +74,7 @@ const SearchBar = () => {
           console.table(newHistoryEntry)
         })
         
-        localforage.setItem('wikiPanelOpened', true)
+        store.dispatch('closeWikiPanel')
 
       } else {
         localforage.setItem('currentSearchHistoryEntry', foundSearchHistoryEntry).then(() => {
@@ -81,7 +82,7 @@ const SearchBar = () => {
           console.table(foundSearchHistoryEntry)
         })
 
-        localforage.setItem('wikiPanelOpened', true)
+        store.dispatch('closeWikiPanel')
       }
     }
   }

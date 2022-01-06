@@ -24,33 +24,41 @@ const WikiPanel = () => {
 
   }, [isPanelOpen])
 
- // useEffect(() => {
- //   UpdatePanelOpenedState()
- // }, []
+  // useEffect(() => {
+  //   UpdatePanelOpenedState()
+  // }, []
   //)
 
- // const UpdatePanelOpenedState = async () => {
- //   let panelOpened = await localforage.getItem('wikiPanelOpened')
- //   this.setState({panelOpened: panelOpened}, () => {
- //     setTimeout(() => this.UpdatePanelOpenedState(), 200)
- //   })
- // }
+  // const UpdatePanelOpenedState = async () => {
+  //   let panelOpened = await localforage.getItem('wikiPanelOpened')
+  //   this.setState({panelOpened: panelOpened}, () => {
+  //     setTimeout(() => this.UpdatePanelOpenedState(), 200)
+  //   })
+  // }
   
-  const PanelClosing = () => {
-    //this.setState({
-    //  panelOpened: false,
-    //  loadedData: false
-    //})
-    store.dispatch('closeWikiPanel')
-  }
+  //const PanelClosing = () => {
+  //this.setState({
+  //  panelOpened: false,
+  //  loadedData: false
+  //})
+    
+  //}
 
-  const PanelOpening = async () => {
-    setCurrentEntry(await localforage.getItem('currentSearchHistoryEntry'))
-    store.dispatch('openWikiPanel')
-    //this.setState({currentEntry: currentSearchHistoryEntry}, () => {
-    //  this.setState({loadedData: true})
-    //})
-  }
+  useEffect(() => {
+    if (isPanelOpen) {
+      localforage.getItem('currentSearchHistoryEntry').then((res) => {
+        setCurrentEntry(res)
+      })
+    }
+  }, [isPanelOpen])
+
+  //const PanelOpening = async () => {
+  //setCurrentEntry(await localforage.getItem('currentSearchHistoryEntry'))
+
+  //this.setState({currentEntry: currentSearchHistoryEntry}, () => {
+  //  this.setState({loadedData: true})
+  //})
+  //}
 
   const OpenWikipedia = () => {
     window.open(currentEntry.wikiData.url, '_blank')
@@ -71,8 +79,7 @@ const WikiPanel = () => {
       cover
       themeDark
       opened={isPanelOpen}
-      onPanelOpened={() => {PanelOpening()}}
-      onPanelClose={() => {PanelClosing()}}
+      onPanelClose={() => {store.dispatch('closeWikiPanel')}}
     >
       <View>
         <Page>
