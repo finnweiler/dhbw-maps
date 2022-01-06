@@ -46,26 +46,33 @@ const WikiPanel = () => {
                 <Navbar title={currentEntry.city}/>
               }
               <Block>
-                <BlockTitle>Adresse</BlockTitle>
-                <Block><p>{currentEntry.address}</p></Block>
+                {startEqualsEnd() ?
+                  <BlockTitle>Aktuelle Position</BlockTitle>
+                  :
+                  <BlockTitle>Ziel-Adresse</BlockTitle>
+                }
+                <Block>{currentEntry.address}</Block>
                 {!startEqualsEnd() ?
                   <Button fill raised
-                    style={{marginTop: '10px', marginBottom: '10px'}}
+                    style={{marginTop: '10px', marginBottom: '25px'}}
                     onClick={() => {StartRoute()}}
                   ><Icon f7="location" size="18" style={{marginRight: '10px'}} />Route starten</Button>
                   :
                   <div></div>
                 }
+              </Block>
+              <hr />
+              <Block>
                 {currentEntry.wikiData != 'not found' ? 
                   <React.Fragment>
-                    <img src={currentEntry.wikiData.image} width='225' />
-                    <BlockTitle>{currentEntry.city}</BlockTitle>
+                    <BlockTitle>Mehr Infos zur {currentEntry.city}</BlockTitle>
                     <Block strong>
                       <p>{'Land: ' +currentEntry.wikiData.country}</p>
                       <p>{'Postleitzahl: ' + currentEntry.wikiData.postalCodes}</p>
                       <p>{'Einwohnerzahl: ' + currentEntry.wikiData.population}</p>
                       <p>{'Bürgermeister: ' + currentEntry.wikiData.mayor}</p>
                     </Block>
+                    <img src={currentEntry.wikiData.image} width='225' />
                     <Block><p>{currentEntry.wikiData.summary}</p></Block>
                     <Button fill raised onClick={() => {OpenWikipedia()}}>
                       <Icon f7='info_circle' size='18' style={{marginRight: '10px'}} />Mehr lesen
@@ -77,11 +84,9 @@ const WikiPanel = () => {
             </React.Fragment>
             :
             <React.Fragment>
-              <Navbar title='Ziel'/>
-              <Block>
-                <Block strong className="text-align-center">
-                  <Preloader color="blue" />
-                </Block>
+              <Navbar title=''/>
+              <Block className="text-align-center">
+                <Preloader color="blue" />
               </Block>
             </React.Fragment>
           }
