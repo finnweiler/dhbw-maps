@@ -5,44 +5,8 @@ import store from '../js/store'
 
 const WikiPanel = () => {
 
-  //    this.state = {
-  //      panelOpened: false,
-  //      loadedData: false,
-  //      currentEntry: null,
-  //    }
-  //  }
-
-  //  componentDidMount() {
-  //    this.UpdatePanelOpenedState()
-  //  }
-
   const [currentEntry, setCurrentEntry] = useState(null)
   const isPanelOpen = useStore('isWikiPanelOpen')
-
-  useEffect(() => {
-    console.log(isPanelOpen)
-
-  }, [isPanelOpen])
-
-  // useEffect(() => {
-  //   UpdatePanelOpenedState()
-  // }, []
-  //)
-
-  // const UpdatePanelOpenedState = async () => {
-  //   let panelOpened = await localforage.getItem('wikiPanelOpened')
-  //   this.setState({panelOpened: panelOpened}, () => {
-  //     setTimeout(() => this.UpdatePanelOpenedState(), 200)
-  //   })
-  // }
-  
-  //const PanelClosing = () => {
-  //this.setState({
-  //  panelOpened: false,
-  //  loadedData: false
-  //})
-    
-  //}
 
   useEffect(() => {
     if (isPanelOpen) {
@@ -52,27 +16,18 @@ const WikiPanel = () => {
     }
   }, [isPanelOpen])
 
-  //const PanelOpening = async () => {
-  //setCurrentEntry(await localforage.getItem('currentSearchHistoryEntry'))
-
-  //this.setState({currentEntry: currentSearchHistoryEntry}, () => {
-  //  this.setState({loadedData: true})
-  //})
-  //}
-
   const OpenWikipedia = () => {
     window.open(currentEntry.wikiData.url, '_blank')
   }
+
   const StartRoute = () =>{
     const position = {
       lat: currentEntry.lat,
       lng: currentEntry.lon
     }
-    
     store.dispatch('newAddress', position)
   }
-  
-  
+
   return (
     <Panel
       left
@@ -108,7 +63,7 @@ const WikiPanel = () => {
                       <Icon f7='info_circle' size='18' style={{marginRight: '10px'}} />Mehr lesen
                     </Button>
                   </React.Fragment>
-                  : 
+                  :
                   <Block><p>{ currentEntry.city + ' hat keinen Wikipedia Eintrag'}</p></Block>}
               </Block>
             </React.Fragment>
@@ -126,6 +81,7 @@ const WikiPanel = () => {
       </View>
     </Panel>
   )
-  
+
 }
+
 export default WikiPanel
