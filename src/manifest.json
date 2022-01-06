@@ -1,6 +1,6 @@
 {
-  "name": "Location Based Service",
-  "short_name": "POI Karte",
+  "name": "DHBW Maps",
+  "short_name": "DHBW Maps",
   "description": "Durch eine Karte kann eine Position oder der aktueller Standort mit ihren Geo-Koordinaten ausgewählt werden. Mit Hilfe des Location Based Service können nun die entsprechenden Information zur Örtlichkeit eingesehen werden, sowie eine Route ausgehend vom aktuellen Standort berechnet werden.",
   "lang": "de-de",
   "start_url": "/",
