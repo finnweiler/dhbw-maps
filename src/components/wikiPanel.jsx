@@ -41,12 +41,12 @@ const WikiPanel = () => {
     //  panelOpened: false,
     //  loadedData: false
     //})
-    localforage.setItem('closeWikiPanel')
+    store.dispatch('closeWikiPanel')
   }
 
   const PanelOpening = async () => {
     setCurrentEntry(await localforage.getItem('currentSearchHistoryEntry'))
-    localforage.setItem('openWikiPanel')
+    store.dispatch('openWikiPanel')
     //this.setState({currentEntry: currentSearchHistoryEntry}, () => {
     //  this.setState({loadedData: true})
     //})
