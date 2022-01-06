@@ -17,7 +17,7 @@ const RoutingButton = () =>{
         <Button fill raised 
           onClick={() => {startRouting()}}
           disabled={!destination}>
-          <Icon size='18' f7='location'></Icon>
+          <Icon size='18' f7='arrow_branch'></Icon>
         </Button>
       </div>)
   }

@@ -101,7 +101,7 @@ const SearchBar = () => {
       })
     }
 
-    return (searchHistory.length > 0 ? <ResultItems /> : <ListItem className="searchBarResult" title="No results found" />)
+    return (searchHistory.length > 0 ? <ResultItems /> : <ListItem className="searchBarResult" title="Kein Ergebnis gefunden" />)
   }
 
   return (
@@ -111,7 +111,7 @@ const SearchBar = () => {
           id={'customSearchBarInputEl'}
           className={'customSearchBarMar'}
           autoComplete={'off'}
-          placeholder={'Search for a location'}
+          placeholder={'Suche'}
           value={searchText}
           onChange={event => {setSearchText(event.target.value), setShowResults(true)}}
         ></input>
