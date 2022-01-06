@@ -25,7 +25,7 @@ const Routing = (props) => {
         let marker = null
         if (i == 0) {
           marker = L.marker(waypoint.latLng, {
-            draggable: true,
+            draggable: false,
             icon: L.icon({
               iconUrl: '/icons/red_marker.png',
               iconSize: [29, 50],
