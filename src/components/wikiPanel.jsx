@@ -41,12 +41,12 @@ class WikiPanel extends React.Component {
   }
 
   OpenWikipedia = () => {
-    window.open(this.state.wikiData.url, '_blank')
+    window.open(this.state.currentEntry.wikiData.url, '_blank')
   }
   StartRoute = () =>{
     const position = {
-      lat: this.state.wikiData.lat,
-      lng: this.state.wikiData.lon
+      lat: this.state.currentEntry.lat,
+      lng: this.state.currentEntry.lon
     }
     
     store.dispatch('newAddress', position)
