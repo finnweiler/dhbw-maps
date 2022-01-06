@@ -9,6 +9,7 @@ import SearchBar from './searchBar'
 import RoutePanel from './routePanel'
 import WikiPanel from './wikiPanel'
 import NotificationButton from './notificationButton'
+import RoutingButton from './startRoutingButton'
 
 const LocationBasedService = () => {
   // Framework7 Parameters
@@ -33,6 +34,7 @@ const LocationBasedService = () => {
     <App { ...f7params } themeDark>
       <SearchBar />   
       <NotificationButton />
+      <RoutingButton />
       <RoutePanel />
       <WikiPanel />
       <Map />
