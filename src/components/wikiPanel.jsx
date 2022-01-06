@@ -50,6 +50,7 @@ class WikiPanel extends React.Component {
     }
     
     store.dispatch('newAddress', position)
+    store.dispatch('newPanelOpened', true)
   }
   
   render() {
