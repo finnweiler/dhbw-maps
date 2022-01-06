@@ -41,14 +41,23 @@ const SearchBar = () => {
         let newCoords = await Geocoding(searchText)
         let newGeolocation = await ReverseGeocoding(newCoords.lng, newCoords.lat)
         const cityName = newGeolocation.address.city || newGeolocation.address.town || newGeolocation.address.village || searchText
-        let newWikiData = await getWikiData(cityName)
-        console.log('save: ' + newGeolocation.display_name)
-        newWikiData = { ...newWikiData, city: cityName, cords: newCoords, address: newGeolocation.display_name, lat: newGeolocation.lat, lon: newGeolocation.lon }
+        
+        let newWikiData
+        try {
+          newWikiData = await getWikiData(cityName)
+        } catch (error) {
+          console.log('Fehler Wikidaten: '+ error)
+          newWikiData = 'not found'
+        }
 
         let newHistoryEntry = {
           text: searchText,
           coords: newCoords,
-          wikiData: newWikiData
+          wikiData: newWikiData,
+          city: cityName,
+          address: newGeolocation.display_name,
+          lat: newGeolocation.lat,
+          lon: newGeolocation.lon
         }
         let newHistory = [...searchHistory, newHistoryEntry]
       

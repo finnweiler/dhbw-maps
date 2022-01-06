@@ -10,17 +10,7 @@ class WikiPanel extends React.Component {
     this.state = {
       panelOpened: false,
       loadedData: false,
-      wikiData: { //Example
-        area: '90.56',
-        country: 'Deutschland',
-        image: 'https://upload.wikimedia.org/wikipedia/commons/f/f1/Pfullendorf_Innenstadt_-_St._Jakob_im_Stadtbild.JPG',
-        mayor: 'Thomas Kugler',
-        population: '13437',
-        postalCodes: '88630',
-        summary: 'Pfullendorf ist eine Kleinstadt im baden-württembergischen Landkreis Sigmaringen. Pfullendorf erhielt 1220 das Stadtrecht und war von 1282 bis 1803 freie Reichsstadt....',
-        url: 'https://en.wikipedia.org/wiki/Pfullendorf',
-        website: 'http://www.pfullendorf.de/'
-      }
+      currentEntry: null,
     }
   }
 
@@ -45,7 +35,7 @@ class WikiPanel extends React.Component {
 
   PanelOpening = async () => {
     let currentSearchHistoryEntry = await localforage.getItem('currentSearchHistoryEntry')
-    this.setState({wikiData: currentSearchHistoryEntry.wikiData}, () => {
+    this.setState({currentEntry: currentSearchHistoryEntry}, () => {
       this.setState({loadedData: true})
     })
   }
@@ -74,38 +64,44 @@ class WikiPanel extends React.Component {
       >
         <View>
           <Page>
-            <Navbar title={this.state.wikiData.city}/>
             {this.state.loadedData ?
-              <Block>
-                <BlockTitle>Adresse</BlockTitle>
-                <Block><p>{this.state.wikiData.address}</p></Block>
-                <Button fill raised
-                  style={{marginTop: '10px', marginBottom: '10px'}}
-                  onClick={() => {this.StartRoute()}}
-                ><Icon f7="location" size="18" style={{marginRight: '10px'}} />Route starten</Button>
-                <img src={this.state.wikiData.image} width='225' />
-                <BlockTitle>{this.state.wikiData.city}</BlockTitle>
-                <Block strong>
-                  <p>{'Land: ' + this.state.wikiData.country}</p>
-                  <p>{'Postleitzahl: ' + this.state.wikiData.postalCodes}</p>
-                  <p>{'Einwohnerzahl: ' + this.state.wikiData.population}</p>
-                  <p>{'Bürgermeister: ' + this.state.wikiData.mayor}</p>
+              <React.Fragment>
+                <Navbar title={this.state.currentEntry.city}/>
+                <Block>
+                  <BlockTitle>Adresse</BlockTitle>
+                  <Block><p>{this.state.currentEntry.address}</p></Block>
+                  <Button fill raised
+                    style={{marginTop: '10px', marginBottom: '10px'}}
+                    onClick={() => {this.StartRoute()}}
+                  ><Icon f7="location" size="18" style={{marginRight: '10px'}} />Route starten</Button>
+                  {this.state.currentEntry.wikiData != 'not found' ? 
+                    <React.Fragment>
+                      <img src={this.state.currentEntry.wikiData.image} width='225' />
+                      <BlockTitle>{this.state.currentEntry.city}</BlockTitle>
+                      <Block strong>
+                        <p>{'Land: ' + this.state.currentEntry.wikiData.country}</p>
+                        <p>{'Postleitzahl: ' + this.state.currentEntry.wikiData.postalCodes}</p>
+                        <p>{'Einwohnerzahl: ' + this.state.currentEntry.wikiData.population}</p>
+                        <p>{'Bürgermeister: ' + this.state.currentEntry.wikiData.mayor}</p>
+                      </Block>
+                      <Block><p>{this.state.currentEntry.wikiData.summary}</p></Block>
+                      <Button fill raised onClick={() => {this.OpenWikipedia()}}>
+                        <Icon f7='info_circle' size='18' style={{marginRight: '10px'}} />Mehr lesen
+                      </Button>
+                    </React.Fragment>
+                    : 
+                    <Block><p>{ this.state.currentEntry.city + ' hat keinen Wikipedia Eintrag'}</p></Block>}
                 </Block>
-                <Block><p>{this.state.wikiData.summary}</p></Block>
-                <Button fill raised
-                  onClick={() => {this.OpenWikipedia()}}
-                ><Icon f7='info_circle' size='18' style={{marginRight: '10px'}} />Mehr lesen</Button>
-              </Block>
+              </React.Fragment>
               :
-              <Block>
-                <Block strong className="text-align-center">
-                  <Preloader color="blue" />
+              <React.Fragment>
+                <Navbar title='Ziel'/>
+                <Block>
+                  <Block strong className="text-align-center">
+                    <Preloader color="blue" />
+                  </Block>
                 </Block>
-                <Block><p>{this.state.wikiData.summary}</p></Block>
-                <Button fill raised
-                  onClick={() => {this.OpenWikipedia()}}
-                ><Icon f7="info_circle" size="18" style={{marginRight: '10px'}} />Mehr lesen</Button>
-              </Block>
+              </React.Fragment>
             }
           </Page>
         </View>
