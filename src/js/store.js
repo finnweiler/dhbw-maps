@@ -9,6 +9,7 @@ const store = createStore({
     panelOpened: false,
     isWikiPanelOpen: false,
     currentWikiEntry: null,
+    currentPosition: null,
   },
   getters: {
     route({ state }) {
@@ -28,6 +29,9 @@ const store = createStore({
     },
     currentWikiEntry({state}) {
       return state.currentWikiEntry
+    },
+    currentPosition({ state }) {
+      return state.currentPosition
     }
   },
   actions: {
@@ -51,6 +55,9 @@ const store = createStore({
     },
     newCurrentWikiEntry({state}, entry) {
       state.currentWikiEntry = entry
+    },
+    newCurrentPosition({ state }, currentPosition) {
+      state.currentPosition = currentPosition
     }
   },
 })

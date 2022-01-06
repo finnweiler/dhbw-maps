@@ -10,6 +10,9 @@ import RoutePanel from './routePanel'
 import WikiPanel from './wikiPanel'
 import NotificationButton from './notificationButton'
 import RoutingButton from './startRoutingButton'
+import WikipediaButton from './wikipediaButton'
+import CurrentPositionButton from './currentPositionButton'
+import { Helmet } from 'react-helmet'
 
 const LocationBasedService = () => {
   // Framework7 Parameters
@@ -31,10 +34,22 @@ const LocationBasedService = () => {
 
   return (
     <App { ...f7params } themeDark>
+      <Helmet>
+        <html lang="de" />
+        <meta charSet="utf-8" />
+        <title>Location Based Service</title>
+        <meta name="description" content="Durch eine Karte kann eine Position oder der aktueller Standort mit ihren Geo-Koordinaten ausgewählt werden. Mit Hilfe des Location Based Service können nun die entsprechenden Information zur Örtlichkeit eingesehen werden, sowie eine Route ausgehend vom aktuellen Standort berechnet werden." />
+        <meta property="og:image" content="/icons/455x256.png" />
+        <meta property="og:image:type" content="image/png"/>
+        <meta property="og:image:width" content="256"/>
+        <meta property="og:image:height" content="256"/>
+      </Helmet>
       <SearchBar />   
       <NotificationButton />
       <RoutingButton />
       <RoutePanel />
+      <WikipediaButton  />
+      <CurrentPositionButton />
       <WikiPanel />
       <Map />
     </App>
