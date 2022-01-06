@@ -20,6 +20,7 @@ const WikiPanel = () => {
     }
     store.dispatch('newAddress', position)
     store.dispatch('newPanelOpened', true)
+    store.dispatch('newReloadMap', position)
   }
 
   function startEqualsEnd() {
