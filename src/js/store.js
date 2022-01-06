@@ -7,6 +7,8 @@ const store = createStore({
     routeControl: null,
     address: null,
     panelOpened: false,
+    isWikiPanelOpen: false,
+    currentWikiEntry: null,
   },
   getters: {
     route({ state }) {
@@ -20,6 +22,12 @@ const store = createStore({
     },
     panelOpened({ state }) {
       return state.panelOpened
+    },
+    isWikiPanelOpen({state}) {
+      return state.isWikiPanelOpen
+    },
+    currentWikiEntry({state}) {
+      return state.currentWikiEntry
     }
   },
   actions: {
@@ -34,6 +42,15 @@ const store = createStore({
     },
     newPanelOpened({ state }, panelOpened) {
       state.panelOpened = panelOpened
+    },
+    openWikiPanel({state}) {
+      state.isWikiPanelOpen = true
+    },
+    closeWikiPanel({state}) {
+      state.isWikiPanelOpen = false
+    },
+    newCurrentWikiEntry({state}, entry) {
+      state.currentWikiEntry = entry
     }
   },
 })
