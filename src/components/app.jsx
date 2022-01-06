@@ -10,6 +10,8 @@ import RoutePanel from './routePanel'
 import WikiPanel from './wikiPanel'
 import NotificationButton from './notificationButton'
 import RoutingButton from './startRoutingButton'
+import WikipediaButton from './wikipediaButton'
+import CurrentPositionButton from './currentPositionButton'
 
 const LocationBasedService = () => {
   // Framework7 Parameters
@@ -36,6 +38,8 @@ const LocationBasedService = () => {
       <NotificationButton />
       <RoutingButton />
       <RoutePanel />
+      <WikipediaButton  />
+      <CurrentPositionButton />
       <WikiPanel />
       <Map />
     </App>
