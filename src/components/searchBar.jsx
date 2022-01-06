@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { List, ListItem } from 'framework7-react'
+import { List, ListItem, useStore } from 'framework7-react'
 import { FaSearch } from 'react-icons/fa'
 import localforage from 'localforage'
 import '../css/searchBar.css'
@@ -38,6 +38,8 @@ const SearchBar = () => {
         }
       })
 
+      store.dispatch('openWikiPanel')
+
       if (!foundSearchTextInSearchHistory) {
         let newCoords = await Geocoding(searchText)
         let newGeolocation = await ReverseGeocoding(newCoords.lng, newCoords.lat)
@@ -69,20 +71,10 @@ const SearchBar = () => {
           console.table(newHistory)
         })
 
-        localforage.setItem('currentSearchHistoryEntry', newHistoryEntry).then(() => {
-          console.log('Saved current searched history entry')
-          console.table(newHistoryEntry)
-        })
-        
-        store.dispatch('openWikiPanel')
+        store.dispatch('newCurrentWikiEntry', newHistoryEntry)
 
       } else {
-        localforage.setItem('currentSearchHistoryEntry', foundSearchHistoryEntry).then(() => {
-          console.log('Saved current searched history entry')
-          console.table(foundSearchHistoryEntry)
-        })
-
-        store.dispatch('openWikiPanel')
+        store.dispatch('newCurrentWikiEntry', foundSearchHistoryEntry)
       }
     }
   }

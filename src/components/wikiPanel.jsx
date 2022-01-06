@@ -5,16 +5,8 @@ import store from '../js/store'
 
 const WikiPanel = () => {
 
-  const [currentEntry, setCurrentEntry] = useState(null)
   const isPanelOpen = useStore('isWikiPanelOpen')
-
-  useEffect(() => {
-    if (isPanelOpen) {
-      localforage.getItem('currentSearchHistoryEntry').then((res) => {
-        setCurrentEntry(res)
-      })
-    }
-  }, [isPanelOpen])
+  const currentEntry = useStore('currentWikiEntry')
 
   const OpenWikipedia = () => {
     window.open(currentEntry.wikiData.url, '_blank')
