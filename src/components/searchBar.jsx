@@ -96,7 +96,11 @@ const SearchBar = () => {
     const ResultItems = () => {
       return searchHistory.map((entry, index) => {
         return (
-          <ListItem className="searchBarResult" key={index} title={entry.text} onClick={() => {setSearchText(entry.text), handleSearch(entry.text)}} />
+          <div key={index}>
+            {entry.text.toLowerCase().includes(searchText.toLowerCase()) ?
+              <ListItem className="searchBarResult" title={entry.text} onClick={() => {setSearchText(entry.text), handleSearch(entry.text)}} />
+              :null}
+          </div>
         )
       })
     }
