@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { MapContainer, TileLayer } from 'react-leaflet'
 import Routing from './routing'
-import { useStore } from 'framework7-react'
+import store from '../js/store'
 
 const Map = () => {
   
@@ -14,10 +14,10 @@ const Map = () => {
       navigator.geolocation.getCurrentPosition(position => {
         const current = {
           lat: position.coords.latitude,
-          lng: position.coords.longitude
+          lng: position.coords.longitude,
         }
-
         setPosition(current)
+        store.dispatch('newCurrentPosition', current)
       })
     } else {
       // Browser doesn't support Geolocation

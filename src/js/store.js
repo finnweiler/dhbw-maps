@@ -7,6 +7,7 @@ const store = createStore({
     routeControl: null,
     address: null,
     panelOpened: false,
+    currentPosition: null,
   },
   getters: {
     route({ state }) {
@@ -20,6 +21,9 @@ const store = createStore({
     },
     panelOpened({ state }) {
       return state.panelOpened
+    },
+    currentPosition({ state }) {
+      return state.currentPosition
     }
   },
   actions: {
@@ -34,6 +38,9 @@ const store = createStore({
     },
     newPanelOpened({ state }, panelOpened) {
       state.panelOpened = panelOpened
+    },
+    newCurrentPosition({ state }, currentPosition) {
+      state.currentPosition = currentPosition
     }
   },
 })
