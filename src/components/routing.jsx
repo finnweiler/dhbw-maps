@@ -1,6 +1,7 @@
 import { useStore } from 'framework7-react'
 import L from 'leaflet'
 import 'leaflet-routing-machine'
+import { useEffect } from 'react'
 import { useMapEvents, useMap } from 'react-leaflet'
 import store from '../js/store'
 
@@ -8,6 +9,9 @@ import store from '../js/store'
 const Routing = (props) => {
   const map = useMap()
   const previousControl = useStore('routeControl')
+
+  const reloadMap = useStore('reloadMap')
+  const address = useStore('address')
 
   function loadRoute(latlng) {
     const control = L.Routing.control({
@@ -52,20 +56,21 @@ const Routing = (props) => {
     store.dispatch('newRouteControl', control)
 
     control.on('routesfound', (e) => {
-      console.log(e)
       store.dispatch('newRoute', e.routes[0])
     })
   }
 
+  useEffect(() => {
+    if (address != null && props.user != null) {
+      if (previousControl) { map.removeControl(previousControl) }
+      loadRoute(address)
+    }
+  }, [reloadMap])
 
   useMapEvents({
     click(e) {
       store.dispatch('newAddress', e.latlng)
-      
-      if (e.latlng != null && props.user != null) {
-        if (previousControl) { map.removeControl(previousControl) }
-        loadRoute(e.latlng)
-      }
+      store.dispatch('newReloadMap', e.latlng)
     }
   })
     

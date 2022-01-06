@@ -11,6 +11,7 @@ const store = createStore({
     currentWikiEntry: null,
     currentPosition: null,
     programmaticSearch: null,
+    reloadMap: false,
   },
   getters: {
     route({ state }) {
@@ -36,6 +37,9 @@ const store = createStore({
     },
     programmaticSearch({ state }) {
       return state.programmaticSearch
+    },
+    reloadMap({ state }) {
+      return state.reloadMap
     }
   },
   actions: {
@@ -65,6 +69,9 @@ const store = createStore({
     },
     newProgrammaticSearch({ state }, programmaticSearch) {
       state.programmaticSearch = programmaticSearch
+    },
+    newReloadMap({ state }, reloadMap) {
+      state.reloadMap = reloadMap
     }
   },
 })
