@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react'
-import { List, ListItem } from 'framework7-react'
+import { List, ListItem, useStore } from 'framework7-react'
 import { FaSearch } from 'react-icons/fa'
 import localforage from 'localforage'
 import '../css/searchBar.css'
 import { Geocoding, ReverseGeocoding } from '../js/geocoding'
 import getWikiData from '../js/wikipedia'
+import store from '../js/store'
 
 const SearchBar = () => {
   const [showResults, setShowResults] = useState(true)
@@ -37,10 +38,34 @@ const SearchBar = () => {
         }
       })
 
+      store.dispatch('newCurrentWikiEntry', null)
+      store.dispatch('openWikiPanel')
+
       if (!foundSearchTextInSearchHistory) {
-        let newCoords = await Geocoding(searchText)
+
+        const regExGeoCoords = RegExp(/^[-+]?([1-8]?\d(\.\d+)?|90(\.0+)?),\s*[-+]?(180(\.0+)?|((1[0-7]\d)|([1-9]?\d))(\.\d+)?)$/)
+        
+        let newCoords
+        if (regExGeoCoords.test(searchText)) {
+          newCoords = {
+            lat: searchText.split(', ')[0],
+            lng: searchText.split(', ')[1]
+          }
+          console.log('regEx', newCoords)
+        } else {
+          newCoords = await Geocoding(searchText)
+          console.log('noRegEx', newCoords)
+        }
+
         let newGeolocation = await ReverseGeocoding(newCoords.lng, newCoords.lat)
-        const cityName = newGeolocation.address.city || newGeolocation.address.town || newGeolocation.address.village || searchText
+        
+        let cityName
+        if (newGeolocation.error) {
+          cityName = newGeolocation.error
+        } else {
+          cityName = newGeolocation.address.city || newGeolocation.address.town || newGeolocation.address.village || searchText
+        }
+        
         
         let newWikiData
         try {
@@ -68,20 +93,9 @@ const SearchBar = () => {
           console.table(newHistory)
         })
 
-        localforage.setItem('currentSearchHistoryEntry', newHistoryEntry).then(() => {
-          console.log('Saved current searched history entry')
-          console.table(newHistoryEntry)
-        })
-        
-        localforage.setItem('wikiPanelOpened', true)
-
+        store.dispatch('newCurrentWikiEntry', newHistoryEntry)
       } else {
-        localforage.setItem('currentSearchHistoryEntry', foundSearchHistoryEntry).then(() => {
-          console.log('Saved current searched history entry')
-          console.table(foundSearchHistoryEntry)
-        })
-
-        localforage.setItem('wikiPanelOpened', true)
+        store.dispatch('newCurrentWikiEntry', foundSearchHistoryEntry)
       }
     }
   }
@@ -96,7 +110,11 @@ const SearchBar = () => {
     const ResultItems = () => {
       return searchHistory.map((entry, index) => {
         return (
-          <ListItem className="searchBarResult" key={index} title={entry.text} onClick={() => {setSearchText(entry.text), handleSearch(entry.text)}} />
+          <div key={index}>
+            {entry.text.toLowerCase().includes(searchText.toLowerCase()) ?
+              <ListItem className="searchBarResult" title={entry.text} onClick={() => {setSearchText(entry.text), handleSearch(entry.text)}} />
+              :null}
+          </div>
         )
       })
     }
