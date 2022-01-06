@@ -13,12 +13,11 @@ const WikipediaButton = () =>{
   }
     
   return (
-    <div style={{zIndex: 1000, position: 'absolute', bottom: '25px', right: '95px'}}>        
+    <div style={{zIndex: 1000, position: 'absolute', bottom: '25px', left: '15px'}}>        
       <Button fill raised 
-        panelOpen="left"
         onClick={() => {showWikipedia()}}
         disabled={!destination}>
-        <Icon size='18' f7='globe'></Icon>
+        <Icon size='18' f7='info'></Icon>
       </Button>
     </div>
   )
