@@ -86,7 +86,7 @@ const SearchBar = () => {
         }
 
         let newHistoryEntry = {
-          text: searchText,
+          text: entryText,
           coords: newCoords,
           wikiData: newWikiData,
           city: cityName,
