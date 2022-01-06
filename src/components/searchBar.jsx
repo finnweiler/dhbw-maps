@@ -96,7 +96,7 @@ const SearchBar = () => {
   }
 
   return (
-    <div style={{zIndex: 1000, position: 'absolute', width: '50%', left: '50%', top: '1%', transform: 'translate(-50%,0)'}}>
+    <div className="search-bar">
       <form onSubmit={(event) => {event.preventDefault(), handleSearch(searchText)}} className={'customSearchBarWrapper'}>
         <input
           id={'customSearchBarInputEl'}

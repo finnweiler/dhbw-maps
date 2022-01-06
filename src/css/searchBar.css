@@ -58,3 +58,21 @@
     white-space: nowrap;
     width: 40px;
 }
+
+.search-bar {
+    z-index: 1000;
+    position: absolute;
+    width: 50%;
+    left: 50%;
+    top: 10px;
+    transform: translate(-50%,0);
+}
+
+@media only screen and (max-width: 570px) {
+    .search-bar {
+        width: auto;
+        left: 60px;
+        right: 15px;
+        transform: none;
+    }    
+}

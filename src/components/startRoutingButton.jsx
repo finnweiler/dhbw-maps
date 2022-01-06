@@ -13,7 +13,7 @@ const RoutingButton = () =>{
     }
     
     return (
-      <div style={{zIndex: 1000, position: 'absolute', bottom: '5px', left: '5px'}}>        
+      <div style={{zIndex: 1000, position: 'absolute', bottom: '25px', right: '15px'}}>        
         <Button fill raised 
           onClick={() => {startRouting()}}
           disabled={!destination}>

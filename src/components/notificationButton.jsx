@@ -95,7 +95,7 @@ class NotificationButton extends React.Component{
       bell_icon = 'bell_fill'
     }
     return (
-      <div style={{zIndex: 1000, position: 'absolute', left: '45px', bottom: '5px'}}>        
+      <div style={{zIndex: 1000, position: 'absolute', right: '55px', bottom: '25px'}}>        
         <Button fill raised 
           onClick={() => {this.toggle_notifications()}}>
           <Icon size='18' f7={bell_icon}></Icon>
