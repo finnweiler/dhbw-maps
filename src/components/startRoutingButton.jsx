@@ -13,11 +13,11 @@ const RoutingButton = () =>{
     }
     
     return (
-      <div style={{zIndex: 1000, position: 'absolute', width: '0%', left:'20%', top: '2%', transform: 'translate(-50%,0)'}}>        
+      <div style={{zIndex: 1000, position: 'absolute', bottom: '5px', left: '5px'}}>        
         <Button fill raised 
           onClick={() => {startRouting()}}
           disabled={!destination}>
-          <Icon f7='location'></Icon>
+          <Icon size='18' f7='location'></Icon>
         </Button>
       </div>)
   }
