@@ -38,6 +38,7 @@ const SearchBar = () => {
         }
       })
 
+      store.dispatch('newCurrentWikiEntry', null)
       store.dispatch('openWikiPanel')
 
       if (!foundSearchTextInSearchHistory) {
@@ -47,16 +48,24 @@ const SearchBar = () => {
         let newCoords
         if (regExGeoCoords.test(searchText)) {
           newCoords = {
-            lat: searchText.split(',')[0],
-            lng: searchText.split(',')[1]
+            lat: searchText.split(', ')[0],
+            lng: searchText.split(', ')[1]
           }
+          console.log('regEx', newCoords)
         } else {
           newCoords = await Geocoding(searchText)
-          console.log(newCoords)
+          console.log('noRegEx', newCoords)
         }
 
         let newGeolocation = await ReverseGeocoding(newCoords.lng, newCoords.lat)
-        const cityName = newGeolocation.address.city || newGeolocation.address.town || newGeolocation.address.village || searchText
+        
+        let cityName
+        if (newGeolocation.error) {
+          cityName = newGeolocation.error
+        } else {
+          cityName = newGeolocation.address.city || newGeolocation.address.town || newGeolocation.address.village || searchText
+        }
+        
         
         let newWikiData
         try {
@@ -85,7 +94,6 @@ const SearchBar = () => {
         })
 
         store.dispatch('newCurrentWikiEntry', newHistoryEntry)
-
       } else {
         store.dispatch('newCurrentWikiEntry', foundSearchHistoryEntry)
       }
