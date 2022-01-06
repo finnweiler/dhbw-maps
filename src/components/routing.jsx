@@ -1,5 +1,4 @@
 import { useStore } from 'framework7-react'
-import { useEffect } from 'react'
 import L from 'leaflet'
 import 'leaflet-routing-machine'
 import { useMapEvents, useMap } from 'react-leaflet'
@@ -22,12 +21,15 @@ const Routing = (props) => {
         let marker = null
         if (i == 0) {
           marker = L.marker(waypoint.latLng, {
-            draggable: false,
+            draggable: true,
             icon: L.icon({
               iconUrl: '/icons/red_marker.png',
               iconSize: [29, 50],
               iconAnchor: [15, 49],
             })
+          })
+          marker.on('dragend', (e) => {
+            store.dispatch('newCurrentPosition', e.target._latlng)
           })
         } else {
           marker = L.marker(waypoint.latLng, {
