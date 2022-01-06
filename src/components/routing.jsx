@@ -19,11 +19,13 @@ const Routing = (props) => {
       waypoints: [L.latLng(props.user.lat, props.user.lng), L.latLng(destination.lat, destination.lng)],
       fitSelectedRoutes: true,
       addWaypoints: false,
+      routeWhileDragging: false,
       createMarker: (i, waypoint, n) => {
         let marker = null
-        if (i < n - 1) {
+        if (i == 0) {
+          console.log('first',i, n)
           marker = L.marker(waypoint.latLng, {
-            draggable: true,
+            draggable: false,
             icon: L.icon({
               iconUrl: '/icons/red_marker.png',
               iconSize: [29, 50],
@@ -31,6 +33,7 @@ const Routing = (props) => {
             })
           })
         } else {
+          console.log('second',i, n)
           marker = L.marker(waypoint.latLng, {
             draggable: true,
             icon: L.icon({
@@ -39,14 +42,18 @@ const Routing = (props) => {
               iconAnchor: [15, 49],
             })
           })
+          marker.on('dragend', (e) => {
+            setTimeout(() => {
+              store.dispatch('newAddress', e.target._latlng)
+            }, 500)
+          }) 
         }
-  
         return marker
       }
     }).addTo(map)
-  
+
     store.dispatch('newRouteControl', control)
-  
+
     control.on('routesfound', (e) => {
       store.dispatch('newRoute', e.routes[0])
     })
