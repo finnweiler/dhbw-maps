@@ -17,7 +17,12 @@ const WikiPanel = () => {
   //  }
 
   const [currentEntry, setCurrentEntry] = useState(null)
-  const isPanelOpen = useStore('wikiPanelOpened')
+  const isPanelOpen = useStore('isWikiPanelOpen')
+
+  useEffect(() => {
+    console.log(isPanelOpen)
+
+  }, [isPanelOpen])
 
  // useEffect(() => {
  //   UpdatePanelOpenedState()
@@ -36,11 +41,12 @@ const WikiPanel = () => {
     //  panelOpened: false,
     //  loadedData: false
     //})
-    localforage.setItem('wikiPanelOpened', false)
+    localforage.setItem('closeWikiPanel')
   }
 
   const PanelOpening = async () => {
     setCurrentEntry(await localforage.getItem('currentSearchHistoryEntry'))
+    localforage.setItem('openWikiPanel')
     //this.setState({currentEntry: currentSearchHistoryEntry}, () => {
     //  this.setState({loadedData: true})
     //})
