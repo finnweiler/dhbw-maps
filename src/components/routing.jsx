@@ -18,6 +18,7 @@ const Routing = (props) => {
       formatter:  new L.Routing.Formatter({ language: 'de' }),
       waypoints: [L.latLng(props.user.lat, props.user.lng), L.latLng(destination.lat, destination.lng)],
       fitSelectedRoutes: true,
+      addWaypoints: false,
       createMarker: (i, waypoint, n) => {
         let marker = null
         if (i < n - 1) {
