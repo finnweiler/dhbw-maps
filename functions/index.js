@@ -80,6 +80,13 @@ exports.getWikiData = functions.region('europe-west1').https.onRequest( async (r
     output.country = cityData.countryLabel?.value
     output.postalCodes = cityData.postalCodes?.value
 
+    // Trim postal codes to the first 5
+    const codes = output.postalCodes?.split(', ')
+    output.postalCodes = codes.slice(0, 5).join(', ')
+    if (codes.length > 5) {
+      output.postalCodes += ', ...'
+    }
+
     await wiki({ apiUrl: 'https://en.wikipedia.org/w/api.php' }).page(city).then(async page => {
 
       output.url = page.fullurl
