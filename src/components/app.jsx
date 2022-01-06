@@ -28,7 +28,6 @@ const LocationBasedService = () => {
   }
 
   localforage.setDriver(localforage.INDEXEDDB)
-  localforage.setItem('wikiPanelOpened', false)
 
   return (
     <App { ...f7params } themeDark>
