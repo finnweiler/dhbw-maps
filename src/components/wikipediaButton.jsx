@@ -7,19 +7,21 @@ const WikipediaButton = () =>{
   const destination = useStore('address')
 
   function showWikipedia(){
-      if(destination != null){
-    store.dispatch('wikiPanelOpened', true)
-      }
+    if(destination != null){
+      store.dispatch('openWikiPanel')
     }
-    
-    return (
-      <div style={{zIndex: 1000, position: 'absolute', bottom: '25px', right: '95px'}}>        
-        <Button fill raised 
-         panelOpen="left"
-          disabled={!destination}>
-          <Icon size='18' f7='globe'></Icon>
-        </Button>
-      </div>)
   }
-  
-  export default WikipediaButton
+    
+  return (
+    <div style={{zIndex: 1000, position: 'absolute', bottom: '25px', right: '95px'}}>        
+      <Button fill raised 
+        panelOpen="left"
+        onClick={() => {showWikipedia()}}
+        disabled={!destination}>
+        <Icon size='18' f7='globe'></Icon>
+      </Button>
+    </div>
+  )
+}
+
+export default WikipediaButton
