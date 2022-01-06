@@ -92,7 +92,14 @@ const SearchBar = () => {
           city: cityName,
           address: newGeolocation.display_name,
         }
-        let newHistory = [...searchHistory, newHistoryEntry]
+        let newHistoryEntryCords = {
+          text: `${newCoords.lat}, ${newCoords.lng}`,
+          coords: newCoords,
+          wikiData: newWikiData,
+          city: cityName,
+          address: newGeolocation.display_name,
+        }
+        let newHistory = [...searchHistory, newHistoryEntry, newHistoryEntryCords]
       
         setSearchHistory(newHistory)
   
