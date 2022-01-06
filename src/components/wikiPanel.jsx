@@ -7,6 +7,7 @@ const WikiPanel = () => {
 
   const isPanelOpen = useStore('isWikiPanelOpen')
   const currentEntry = useStore('currentWikiEntry')
+  const start = useStore('currentPosition')
 
   const OpenWikipedia = () => {
     window.open(currentEntry.wikiData.url, '_blank')
@@ -21,6 +22,12 @@ const WikiPanel = () => {
     store.dispatch('newPanelOpened', true)
   }
 
+  function startEqualsEnd() {
+    console.log('start', start, 'end', currentEntry.coords)
+    return (start.lat == Number(currentEntry.coords.lat)
+      && start.lng == Number(currentEntry.coords.lng))
+  }
+
   return (
     <Panel
       left
@@ -33,14 +40,22 @@ const WikiPanel = () => {
         <Page>
           {currentEntry != null ?
             <React.Fragment>
-              <Navbar title={currentEntry.city}/>
+              {startEqualsEnd() ?
+                <Navbar title='Aktuelle Position'/>
+                :
+                <Navbar title={currentEntry.city}/>
+              }
               <Block>
                 <BlockTitle>Adresse</BlockTitle>
                 <Block><p>{currentEntry.address}</p></Block>
-                <Button fill raised
-                  style={{marginTop: '10px', marginBottom: '10px'}}
-                  onClick={() => {StartRoute()}}
-                ><Icon f7="location" size="18" style={{marginRight: '10px'}} />Route starten</Button>
+                {!startEqualsEnd() ?
+                  <Button fill raised
+                    style={{marginTop: '10px', marginBottom: '10px'}}
+                    onClick={() => {StartRoute()}}
+                  ><Icon f7="location" size="18" style={{marginRight: '10px'}} />Route starten</Button>
+                  :
+                  <div></div>
+                }
                 {currentEntry.wikiData != 'not found' ? 
                   <React.Fragment>
                     <img src={currentEntry.wikiData.image} width='225' />

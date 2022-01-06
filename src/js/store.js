@@ -10,6 +10,7 @@ const store = createStore({
     isWikiPanelOpen: false,
     currentWikiEntry: null,
     currentPosition: null,
+    programmaticSearch: null,
   },
   getters: {
     route({ state }) {
@@ -32,6 +33,9 @@ const store = createStore({
     },
     currentPosition({ state }) {
       return state.currentPosition
+    },
+    programmaticSearch({ state }) {
+      return state.programmaticSearch
     }
   },
   actions: {
@@ -58,6 +62,9 @@ const store = createStore({
     },
     newCurrentPosition({ state }, currentPosition) {
       state.currentPosition = currentPosition
+    },
+    newProgrammaticSearch({ state }, programmaticSearch) {
+      state.programmaticSearch = programmaticSearch
     }
   },
 })

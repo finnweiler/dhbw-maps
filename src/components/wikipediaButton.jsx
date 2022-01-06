@@ -9,6 +9,7 @@ const WikipediaButton = () =>{
   function showWikipedia(){
     if(destination != null){
       store.dispatch('openWikiPanel')
+      store.dispatch('newProgrammaticSearch', `${destination.lat}, ${destination.lng}`)
     }
   }
     

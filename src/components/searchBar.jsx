@@ -12,6 +12,7 @@ const SearchBar = () => {
   const [searchText, setSearchText] = useState('')
   const [searchHistory, setSearchHistory] = useState([])
   const [height, setHeight] = useState(0)
+  const programmaticSearch = useStore('programmaticSearch')
 
   const loadSearchHistory = () => {
 
@@ -24,7 +25,16 @@ const SearchBar = () => {
     })
   }
 
+  useEffect(() => {
+    if (programmaticSearch) {
+      setSearchText(programmaticSearch)
+      handleSearch(programmaticSearch)
+    }
+  }, [programmaticSearch])
+
   const handleSearch = async (entryText) => {
+
+    console.log('Searching for: ', entryText)
 
     if (entryText !== '') {
       setShowResults(false)
@@ -46,14 +56,14 @@ const SearchBar = () => {
         const regExGeoCoords = RegExp(/^[-+]?([1-8]?\d(\.\d+)?|90(\.0+)?),\s*[-+]?(180(\.0+)?|((1[0-7]\d)|([1-9]?\d))(\.\d+)?)$/)
         
         let newCoords
-        if (regExGeoCoords.test(searchText)) {
+        if (regExGeoCoords.test(entryText)) {
           newCoords = {
-            lat: searchText.split(', ')[0],
-            lng: searchText.split(', ')[1]
+            lat: entryText.split(', ')[0],
+            lng: entryText.split(', ')[1]
           }
           console.log('regEx', newCoords)
         } else {
-          newCoords = await Geocoding(searchText)
+          newCoords = await Geocoding(entryText)
           console.log('noRegEx', newCoords)
         }
 
@@ -81,8 +91,6 @@ const SearchBar = () => {
           wikiData: newWikiData,
           city: cityName,
           address: newGeolocation.display_name,
-          lat: newGeolocation.lat,
-          lon: newGeolocation.lon
         }
         let newHistory = [...searchHistory, newHistoryEntry]
       

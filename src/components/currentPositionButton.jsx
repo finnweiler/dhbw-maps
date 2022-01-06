@@ -8,6 +8,7 @@ const CurrentPositionButton = () =>{
 
   function showWikipedia(){
     store.dispatch('openWikiPanel')
+    store.dispatch('newProgrammaticSearch', `${position.lat}, ${position.lng}`)
   }
   
   return (
