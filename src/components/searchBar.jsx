@@ -38,7 +38,20 @@ const SearchBar = () => {
       })
 
       if (!foundSearchTextInSearchHistory) {
-        let newCoords = await Geocoding(searchText)
+
+        const regExGeoCoords = RegExp(/^[-+]?([1-8]?\d(\.\d+)?|90(\.0+)?),\s*[-+]?(180(\.0+)?|((1[0-7]\d)|([1-9]?\d))(\.\d+)?)$/)
+        
+        let newCoords
+        if (regExGeoCoords.test(searchText)) {
+          newCoords = {
+            lat: searchText.split(',')[0],
+            lng: searchText.split(',')[1]
+          }
+        } else {
+          newCoords = await Geocoding(searchText)
+          console.log(newCoords)
+        }
+
         let newGeolocation = await ReverseGeocoding(newCoords.lng, newCoords.lat)
         const cityName = newGeolocation.address.city || newGeolocation.address.town || newGeolocation.address.village || searchText
         
