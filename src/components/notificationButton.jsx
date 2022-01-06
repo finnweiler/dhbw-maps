@@ -1,20 +1,20 @@
 import React, { useState, useEffect } from 'react'
 import { Block, List, ListItem, Button, Icon } from 'framework7-react'
 import notification_bell from '../notification_icons/bell_icon.png'
-import location_icon from '../notification_icons/gps_icon.png' // relative path to image 
+import location_icon from '../notification_icons/gps_icon.png' // relative path to image
 
 //class to handle all notficiations
 class NotificationButton extends React.Component{
   constructor (){
     super()
 
-    //default = no notifications 
+    //default = no notifications
     this.state = {
       notification_activate: false
     }
 
     //bind this to the toggle_notifications function
-    this.toggle_notifications = this.toggle_notifications.bind(this)     
+    this.toggle_notifications = this.toggle_notifications.bind(this)
   }
 
   //send a notification
@@ -29,16 +29,16 @@ class NotificationButton extends React.Component{
     }
   }
 
-  //called periodically to send a notification if the location permission is not granted permanently 
+  //called periodically to send a notification if the location permission is not granted permanently
   async notify_check(){
     //check the location permission state
     let permission_state
     await navigator.permissions.query({
       name: 'geolocation'
     }).then(permission =>
-      permission_state = permission.state           
+      permission_state = permission.state
     )
-    
+
     //define a function to open the location prompt
     let click_function = function() {
       navigator.geolocation.getCurrentPosition(() => {})
@@ -56,10 +56,10 @@ class NotificationButton extends React.Component{
         'Um eine schnelle Nutzung zu ermöglichen, erlaube einen dauerhaften Zugriff auf deinen Standort.',
         location_icon,
         click_function)
-    } 
+    }
   }
 
-  toggle_notifications(){   
+  toggle_notifications(){
     if(!this.state.notification_activate)
     {
       //send notification if notifications get activated
@@ -67,7 +67,7 @@ class NotificationButton extends React.Component{
         'Vielen Dank für das Aktivieren der Benachrichtigungen.',
         notification_bell,
         null)
-      
+
       // call notify_check every 5 Minutes
       this.interval = setInterval(() => {
         this.notify_check()
@@ -77,7 +77,7 @@ class NotificationButton extends React.Component{
       //deactivate the periodically call of notify_check
       clearInterval(this.interval)
     }
-    
+
     //change the state variable to change the icon
     this.setState(
       prevState => {
@@ -95,8 +95,8 @@ class NotificationButton extends React.Component{
       bell_icon = 'bell_fill'
     }
     return (
-      <div style={{zIndex: 1000, position: 'absolute', right: '55px', bottom: '25px'}}>        
-        <Button fill raised 
+      <div style={{zIndex: 1000, position: 'absolute', right: '55px', bottom: '25px'}}>
+        <Button fill raised
           onClick={() => {this.toggle_notifications()}}>
           <Icon size='18' f7={bell_icon}></Icon>
         </Button>

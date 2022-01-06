@@ -8,7 +8,7 @@ const RoutePanel = () => {
 
   const route = useStore('route')
   const panelOpened = useStore('panelOpened')
-  
+
   const formatter = new L.Routing.Formatter({language: 'de'})
 
   function PanelClosing() {
@@ -17,10 +17,10 @@ const RoutePanel = () => {
 
 
   return (
-    <Panel 
-      right 
-      cover 
-      themeDark 
+    <Panel
+      right
+      cover
+      themeDark
       opened={panelOpened}
       onPanelClose={() => {PanelClosing()}}
     >
@@ -38,7 +38,7 @@ const RoutePanel = () => {
               <BlockTitle>Wegbeschreibung</BlockTitle>
               {route?.instructions?.map((instruction, i) => {
                 return (
-                  <p key={instruction+i}>{i+1}. {formatter.formatInstruction(instruction)}</p>  
+                  <p key={instruction+i}>{i+1}. {formatter.formatInstruction(instruction)}</p>
                 )
               })}
             </Block>
@@ -46,7 +46,7 @@ const RoutePanel = () => {
         </Page>
       </View>
     </Panel>
-  ) 
+  )
 }
 
 

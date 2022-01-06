@@ -41,7 +41,7 @@ const SearchBar = () => {
         let newCoords = await Geocoding(searchText)
         let newGeolocation = await ReverseGeocoding(newCoords.lng, newCoords.lat)
         const cityName = newGeolocation.address.city || newGeolocation.address.town || newGeolocation.address.village || searchText
-        
+
         let newWikiData
         try {
           newWikiData = await getWikiData(cityName)
@@ -60,9 +60,9 @@ const SearchBar = () => {
           lon: newGeolocation.lon
         }
         let newHistory = [...searchHistory, newHistoryEntry]
-      
+
         setSearchHistory(newHistory)
-  
+
         localforage.setItem('searchHistory', newHistory).then(() => {
           console.log('Saved search history')
           console.table(newHistory)
@@ -72,7 +72,7 @@ const SearchBar = () => {
           console.log('Saved current searched history entry')
           console.table(newHistoryEntry)
         })
-        
+
         localforage.setItem('wikiPanelOpened', true)
 
       } else {

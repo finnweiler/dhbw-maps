@@ -4,7 +4,7 @@ import Routing from './routing'
 import { useStore } from 'framework7-react'
 
 const Map = () => {
-  
+
   const [position, setPosition] = useState({lat: 47.665753037254085, lng: 9.447255091829561})
   const [map, setMap] = useState(null)
 
@@ -37,7 +37,7 @@ const Map = () => {
 
 
   return (
-    <MapContainer 
+    <MapContainer
       zoom={14}
       minZoom={4}
       scrollWheelZoom={true}
@@ -52,7 +52,7 @@ const Map = () => {
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-        
+
       <Routing user={position}></Routing>
     </MapContainer>
   )

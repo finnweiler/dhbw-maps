@@ -6,7 +6,7 @@ import store from '../js/store'
 class WikiPanel extends React.Component {
   constructor(props) {
     super(props)
-  
+
     this.state = {
       panelOpened: false,
       loadedData: false,
@@ -24,7 +24,7 @@ class WikiPanel extends React.Component {
       setTimeout(() => this.UpdatePanelOpenedState(), 200)
     })
   }
-  
+
   PanelClosing = () => {
     this.setState({
       panelOpened: false,
@@ -48,10 +48,10 @@ class WikiPanel extends React.Component {
       lat: this.state.currentEntry.lat,
       lng: this.state.currentEntry.lon
     }
-    
+
     store.dispatch('newAddress', position)
   }
-  
+
   render() {
     return (
       <Panel
@@ -74,7 +74,7 @@ class WikiPanel extends React.Component {
                     style={{marginTop: '10px', marginBottom: '10px'}}
                     onClick={() => {this.StartRoute()}}
                   ><Icon f7="location" size="18" style={{marginRight: '10px'}} />Route starten</Button>
-                  {this.state.currentEntry.wikiData != 'not found' ? 
+                  {this.state.currentEntry.wikiData != 'not found' ?
                     <React.Fragment>
                       <img src={this.state.currentEntry.wikiData.image} width='225' />
                       <BlockTitle>{this.state.currentEntry.city}</BlockTitle>
@@ -89,7 +89,7 @@ class WikiPanel extends React.Component {
                         <Icon f7='info_circle' size='18' style={{marginRight: '10px'}} />Mehr lesen
                       </Button>
                     </React.Fragment>
-                    : 
+                    :
                     <Block><p>{ this.state.currentEntry.city + ' hat keinen Wikipedia Eintrag'}</p></Block>}
                 </Block>
               </React.Fragment>

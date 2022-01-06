@@ -32,7 +32,7 @@ const LocationBasedService = () => {
 
   return (
     <App { ...f7params } themeDark>
-      <SearchBar />   
+      <SearchBar />
       <NotificationButton />
       <RoutingButton />
       <RoutePanel />

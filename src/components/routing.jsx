@@ -39,13 +39,13 @@ const Routing = (props) => {
             })
           })
         }
-  
+
         return marker
       }
     }).addTo(map)
-  
+
     store.dispatch('newRouteControl', control)
-  
+
     control.on('routesfound', (e) => {
       store.dispatch('newRoute', e.routes[0])
       store.dispatch('newPanelOpened', true)
@@ -65,7 +65,7 @@ const Routing = (props) => {
       store.dispatch('newAddress', e.latlng)
     }
   })
-    
+
   return null
 
 }
