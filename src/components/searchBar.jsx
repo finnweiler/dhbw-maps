@@ -74,7 +74,7 @@ const SearchBar = () => {
           console.table(newHistoryEntry)
         })
         
-        store.dispatch('closeWikiPanel')
+        store.dispatch('openWikiPanel')
 
       } else {
         localforage.setItem('currentSearchHistoryEntry', foundSearchHistoryEntry).then(() => {
@@ -82,7 +82,7 @@ const SearchBar = () => {
           console.table(foundSearchHistoryEntry)
         })
 
-        store.dispatch('closeWikiPanel')
+        store.dispatch('openWikiPanel')
       }
     }
   }
