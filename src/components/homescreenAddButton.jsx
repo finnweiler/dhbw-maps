@@ -3,7 +3,7 @@ import { useAddToHomescreenPrompt } from "./useAddToHomescreenPrompt";
 import { Button } from 'framework7-react'
 
 
-export function ExampleComponent() {
+function HomescreenAddButton() {
   const [prompt, promptToInstall] = useAddToHomescreenPrompt();
   const [isVisible, setVisibleState] = React.useState(false);
 
@@ -28,3 +28,5 @@ export function ExampleComponent() {
     </div>
   );
 }
+
+export default HomescreenAddButton;

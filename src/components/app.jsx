@@ -13,7 +13,7 @@ import RoutingButton from './startRoutingButton'
 import WikipediaButton from './wikipediaButton'
 import CurrentPositionButton from './currentPositionButton'
 import { Helmet } from 'react-helmet'
-import { ExampleComponent } from './ExampleComponent'
+import HomescreenAddButton from './homescreenAddButton'
 
 const LocationBasedService = () => {
   // Framework7 Parameters
@@ -52,7 +52,7 @@ const LocationBasedService = () => {
       <WikipediaButton  />
       <CurrentPositionButton />
       <WikiPanel />
-      <ExampleComponent/>
+      <HomescreenAddButton />
       <Map />
     </App>
   )
