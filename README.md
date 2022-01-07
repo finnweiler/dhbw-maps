@@ -38,8 +38,8 @@ Ziel der Aufgabenstellung war die Entwicklung einer Web Applikation in Form eine
 ### Online
 [Seite im Browser aufrufen](https://webeng.fwapis.com/)
 ### Anmerkung
-Um die volle Funktionalität der Seite (vor allem nach Versionsänderungen) zu gewährleisten, sollte der Zwischenspeicher zu Beginn geleert werden:
-Inspect -> Application -> Storage -> Clear Site Data -> Seite neu laden
+Um die volle Funktionalität der Seite (vor allem nach Versionsänderungen) zu gewährleisten, sollte der Zwischenspeicher zu Beginn geleert werden:  
+Inspect :arrow_right: Application :arrow_right: Storage :arrow_right: Clear Site Data :arrow_right: Seite neu laden
 
 ## Entwickler
 Alle Entwickler sind Studenten des TIT19-Kurses der DHBW Ravensburg/Campus Friedrichshafen
