@@ -1,4 +1,4 @@
-# LocationBasedService
+# DHBW Maps | Der Kartenservice
 ## Rahmenbedingungen
 Entwicklung der Anwendung im Rahmen der Vorlesung **Web Engineering**.  
 Ziel der Aufgabenstellung war die Entwicklung einer Web Applikation in Form einer PWA, welche eine Karte darstellt, auf welcher der Nutzer seine Position einsehen kann. Der Nutzer kann dann Orte suchen, zu welchen er eine Navigation starten und einen Auszug des dazugehörigen Wikipedia-Artikels einsehen kann.
