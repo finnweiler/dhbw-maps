@@ -3,6 +3,8 @@ import { Block, List, ListItem, Button, Icon } from 'framework7-react'
 import notification_bell from '../notification_icons/bell_icon.png'
 import location_icon from '../notification_icons/gps_icon.png' // relative path to image 
 
+//navigator.serviceWorker.register('../js/notification.js')
+
 //class to handle all notficiations
 class NotificationButton extends React.Component{
   constructor (){
@@ -22,10 +24,15 @@ class NotificationButton extends React.Component{
     //ask for permission if not already granted
     const result = await Notification.requestPermission()
     if (result === 'granted') {
-      new Notification(titel, {
+      /*new Notification(titel, {
         body: body,
-        icon: icon,
-      }).onclick = click_function
+        icon: icon
+      }).onclick = click_function*/
+      let registration = await navigator.serviceWorker.register('../js/notification.js')
+      registration.showNotification(titel, {
+        body: body,
+        icon: icon
+      })
     }
   }
 
@@ -71,7 +78,7 @@ class NotificationButton extends React.Component{
       // call notify_check every 5 Minutes
       this.interval = setInterval(() => {
         this.notify_check()
-      }, 300000)
+      }, 5000)
     }
     else{
       //deactivate the periodically call of notify_check
