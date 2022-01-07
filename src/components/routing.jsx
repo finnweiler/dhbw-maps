@@ -11,7 +11,7 @@ const Routing = (props) => {
   const previousControl = useStore('routeControl')
 
   const reloadMap = useStore('reloadMap')
-  const address = useStore('address')
+  const address = useStore('destination')
 
   function loadRoute(latlng) {
     const control = L.Routing.control({
@@ -56,7 +56,7 @@ const Routing = (props) => {
     store.dispatch('newRouteControl', control)
 
     control.on('routesfound', (e) => {
-      store.dispatch('newRoute', e.routes[0])
+      store.dispatch('newRouteInstructions', e.routes[0])
     })
   }
 
@@ -69,7 +69,7 @@ const Routing = (props) => {
 
   useMapEvents({
     click(e) {
-      store.dispatch('newAddress', e.latlng)
+      store.dispatch('newDestination', e.latlng)
       store.dispatch('newReloadMap')
     }
   })
