@@ -7,7 +7,6 @@ Ziel der Aufgabenstellung war die Entwicklung einer Web Applikation in Form eine
 - Framework7
 - Leaflet
 - Wikipedia API
-- Discord (Kommunikation)
 ## Beschreibung der Anwendung
 ### Beschreibung der Funktionalitäten
 - Karte im Vollbildformat mit der Möglichkeit, diese zu vergrößern/verkleinern/verschieben
