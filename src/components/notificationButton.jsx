@@ -15,8 +15,8 @@ class NotificationButton extends React.Component{
 
     //register service workers for handling the notifications
     //one service worker for an distinct event
-    navigator.serviceWorker.register('../js/notifications/geolocation/sw.js')
-    navigator.serviceWorker.register('../js/notifications/other/sw.js')
+    navigator.serviceWorker.register('./../js/notifications/geolocation/sw.js')
+    navigator.serviceWorker.register('./../js/notifications/other/sw.js')
 
     //listen to messages from the service workers
     navigator.serviceWorker.onmessage = (event) => {
