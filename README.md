@@ -33,7 +33,11 @@ Ziel der Aufgabenstellung war die Entwicklung einer Web Applikation in Form eine
   - Glocke-Button: (De)Aktivieren von Benachrichtigungen
   - Route-Button: Einblenden der aktuellen Wegbeschreibung
 ### Screenshots
-<img src="readme-screenshots/Screenshot_main_page.png" width=252 height=264> <img src="readme-screenshots/Screenshot_left_card.png" width=98 height=264> <img src="readme-screenshots/Screenshot_right_card.png" width=98 height=264>
+![image](https://user-images.githubusercontent.com/28830219/148594459-a1c418c8-b023-440a-aaa3-391770b8c763.png)
+![image](https://user-images.githubusercontent.com/28830219/148594523-19e68566-bc35-45e5-8139-d13f4ba295ac.png)
+![image](https://user-images.githubusercontent.com/28830219/148594625-b6ecdbf3-0415-4fff-86d0-084819f91e9a.png)
+![image](https://user-images.githubusercontent.com/28830219/148594692-02beb32e-cbfd-4f2b-8ee6-dd74608e5734.png)
+
 ## Ausführen der Anwendung
 ### Lokal
 1. Repository klonen
