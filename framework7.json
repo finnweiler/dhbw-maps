@@ -1,9 +1,7 @@
 {
   "cwd": "/home/finn/GitHub/WebEngineering",
-  "type": [
-    "pwa"
-  ],
-  "name": "LocationBasedService",
+  "type": ["pwa"],
+  "name": "DHBW Maps | Der Kartenservice",
   "framework": "react",
   "template": "single-view",
   "bundler": "vite",

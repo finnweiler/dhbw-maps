@@ -18,7 +18,7 @@ import { Helmet } from 'react-helmet'
 const LocationBasedService = () => {
   // Framework7 Parameters
   const f7params = {
-    name: 'LocationBasedService', // App name
+    name: 'DHBW Maps | Der Kartenservice', // App name
     theme: 'auto', // Automatic theme detection
     // App store
     store: store,
@@ -38,7 +38,7 @@ const LocationBasedService = () => {
       <Helmet>
         <html lang="de" />
         <meta charSet="utf-8" />
-        <title>Location Based Service</title>
+        <title>DHBW Maps | Der Kartenservice</title>
         <meta name="description" content="Durch eine Karte kann eine Position oder der aktueller Standort mit ihren Geo-Koordinaten ausgewählt werden. Mit Hilfe des Location Based Service können nun die entsprechenden Information zur Örtlichkeit eingesehen werden, sowie eine Route ausgehend vom aktuellen Standort berechnet werden." />
         <meta property="og:image" content="/icons/455x256.png" />
         <meta property="og:image:type" content="image/png"/>
