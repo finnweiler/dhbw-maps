@@ -51,18 +51,18 @@ Ziel der Aufgabenstellung war die Entwicklung einer Web Applikation in Form eine
 
 ## Entwickler
 Alle Entwickler sind Studenten des TIT19-Kurses der DHBW Ravensburg/Campus Friedrichshafen
-- Manuel Bonke
-- Greta Buckenmaier
-- Jakob Däubel
-- Mirijam Flüs
-- Moritz Gärtner
-- Julius Henle
-- Niklas Leinz
-- Gary Lude
-- Lars Strölin
-- Finn Weiler (Scrum Master)
-- Kai Weinmann
-- Julian Basri Yaman (Scrum Master)
+- Manuel Bonke ([@m4nu3l-00](https://github.com/m4nu3l-00))
+- Greta Buckenmaier ([@greta918](https://github.com/greta918))
+- Jakob Däubel ([@derjakob272](https://github.com/derjakob272))
+- Mirijam Flüs ([@miri-f-05](https://github.com/miri-f-05))
+- Moritz Gärtner ([@Sarius32](https://github.com/Sarius32))
+- Julius Henle ([@JuliusH4](https://github.com/JuliusH4))
+- Niklas Leinz ([@corusm](https://github.com/corusm))
+- Gary Lude ([@Kiodok](https://github.com/Kiodok))
+- Lars Strölin ([@M4RD3K](https://github.com/M4RD3K))
+- Finn Weiler (Scrum Master) ([@finnweiler](https://github.com/finnweiler))
+- Kai Weinmann ([@kai66w](https://github.com/kai66w))
+- Julian Basri Yaman (Scrum Master) ([@julianYaman](https://github.com/julianYaman))
 
 ## Known Issues
 - Es gibt in der Leaflet Routing Machine Bibliothek eine [known Issue](https://github.com/mapbox/owlviewer/issues/21), die gelegentlich eine Fehlermeldung in der Konsole produziert. Das schränkt die Funktion unserer Anwendung allerdings nicht weiter ein. 
