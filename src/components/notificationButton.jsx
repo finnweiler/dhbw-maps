@@ -79,7 +79,6 @@ class NotificationButton extends React.Component{
   //try to send the "activated notifications" message
   //retry up to (default) 5 times with a spacing of 1 second (needed if the service worker is not installed at the beginning) 
   async send_activated_notfication(max_tries=5){
-    console.log(max_tries)
     let return_value = await this.notify('Benachrichtigungen aktiviert!',
       'Vielen Dank für das Aktivieren der Benachrichtigungen.',
       notification_bell,
