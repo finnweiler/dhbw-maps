@@ -13,10 +13,23 @@ class NotificationButton extends React.Component{
       notification_activate: false
     }
 
+    this.listen_for_notification_clicks()
+
     navigator.serviceWorker.register('../js/notification.js')
 
     //bind this to the toggle_notifications function
     this.toggle_notifications = this.toggle_notifications.bind(this)     
+  }
+
+  async listen_for_notification_clicks(){
+    console.log("a")
+    navigator.serviceWorker.onmessage = (event) => {
+      console.log("hier")
+      if (event.data && event.data.type === 'notification_geolocation') {
+        console.log("click")
+      }
+    }
+    console.log("b")
   }
 
   //send a notification
