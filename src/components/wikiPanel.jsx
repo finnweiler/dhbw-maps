@@ -7,11 +7,11 @@ const WikiPanel = () => {
   const currentEntry = useStore('currentWikiEntry')
   const start = useStore('currentPosition')
 
-  const OpenWikipedia = () => {
+  const openWikipedia = () => {
     window.open(currentEntry.wikiData.url, '_blank')
   }
 
-  const StartRoute = () => {
+  const startRoute = () => {
     const position = {
       lat: currentEntry.coords.lat,
       lng: currentEntry.coords.lng,
@@ -47,7 +47,7 @@ const WikiPanel = () => {
                         fill
                         raised
                         style={{ marginTop: '10px', marginBottom: '25px' }}
-                        onClick={() => StartRoute()}
+                        onClick={() => startRoute()}
                       >
                         <Icon f7="location" size="18" style={{ marginRight: '10px' }} />
                         Route starten
@@ -68,7 +68,7 @@ const WikiPanel = () => {
                             <Block>
                               <p>{currentEntry.wikiData.summary}</p>
                             </Block>
-                            <Button fill raised onClick={() => OpenWikipedia()}>
+                            <Button fill raised onClick={() => openWikipedia()}>
                               <Icon f7="info_circle" size="18" style={{ marginRight: '10px' }} />
                               Begriffsklärung
                             </Button>
@@ -86,7 +86,7 @@ const WikiPanel = () => {
                             <Block>
                               <p>{currentEntry.wikiData.summary}</p>
                             </Block>
-                            <Button fill raised onClick={() => OpenWikipedia()}>
+                            <Button fill raised onClick={() => openWikipedia()}>
                               <Icon f7="info_circle" size="18" style={{ marginRight: '10px' }} />
                               Mehr lesen
                             </Button>

@@ -9,12 +9,12 @@ const RoutePanel = () => {
 
   const formatter = new L.Routing.Formatter({ language: 'de' })
 
-  function PanelClosing() {
+  function panelClosing() {
     store.dispatch('closeRoutePanel')
   }
 
   return (
-    <Panel right cover themeDark opened={isRoutePanelOpen} onPanelClose={() => PanelClosing()}>
+    <Panel right cover themeDark opened={isRoutePanelOpen} onPanelClose={() => panelClosing()}>
       <View>
         <Page>
           <Navbar title="Wegbeschreibung" />

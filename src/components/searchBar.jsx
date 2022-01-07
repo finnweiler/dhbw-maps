@@ -3,7 +3,7 @@ import localforage from 'localforage'
 import React, { useEffect, useState } from 'react'
 import { FaSearch } from 'react-icons/fa'
 import '../css/searchBar.css'
-import { Geocoding, ReverseGeocoding } from '../js/geocoding'
+import { geocoding, reverseGeocoding } from '../js/geocoding'
 import store from '../js/store'
 import getWikiData from '../js/wikipedia'
 
@@ -67,7 +67,7 @@ const SearchBar = () => {
           }
           console.log('regEx', newCoords)
         } else {
-          newCoords = await Geocoding(entryText)
+          newCoords = await geocoding(entryText)
           console.log('noRegEx', newCoords)
         }
 
@@ -77,7 +77,7 @@ const SearchBar = () => {
           return
         }
 
-        let newGeolocation = await ReverseGeocoding(newCoords.lng, newCoords.lat)
+        let newGeolocation = await reverseGeocoding(newCoords.lng, newCoords.lat)
 
         let cityName
         if (newGeolocation.error) {
