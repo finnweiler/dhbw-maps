@@ -13,7 +13,7 @@ Ziel der Aufgabenstellung war die Entwicklung einer Web Applikation in Form eine
 - Karte im Vollbildformat mit der Möglichkeit, diese zu vergrößern/verkleinern/verschieben
   - Ansicht des eigenen Standorts (bei deaktivierten Standortdiensten der Standort der DHBW)
   - Anzeige des Zielstandorts mit Route (wenn angefordert)  
-- Zentrale Suchleiste mit Search History zur Suche nach Orten
+- Zentrale Suchleiste mit Search History zur Suche nach Orten, Adressen, Koordinaten
 - Nach Eingabe einer Suche öffnet sich links eine Side Card mit Informationen zu dem Ort und der Möglichkeit die Route dorthin zu starten oder die dazugehörige Wikipedia-Seite aufzurufen
 - Starten einer Route öffnet rechte Side Card mit Routen-Beschreibung
 - Alle Side Cards können durch Klicken auf die Karte verlassen werden und über folgende Buttons wieder eingeblendet werden
@@ -39,7 +39,8 @@ Ziel der Aufgabenstellung war die Entwicklung einer Web Applikation in Form eine
 [Seite im Browser aufrufen](https://webeng.fwapis.com/)
 ### Anmerkung
 Um die volle Funktionalität der Seite (vor allem nach Versionsänderungen) zu gewährleisten, sollte der Zwischenspeicher zu Beginn geleert werden:  
-z.B. in Chrome: Inspect :arrow_right: Application :arrow_right: Storage :arrow_right: Clear Site Data :arrow_right: Seite neu laden
+z.B. in Chrome: Inspect :arrow_right: Application :arrow_right: Storage :arrow_right: Clear Site Data :arrow_right: Seite neu laden.  
+Da es sich bei dem Routenserver nur um einen Demo-Server handelt und keinen Production-Server, ist eine 100%ige Uptime nicht möglich/garantiert.
 
 ## Entwickler
 Alle Entwickler sind Studenten des TIT19-Kurses der DHBW Ravensburg/Campus Friedrichshafen
