@@ -1,6 +1,5 @@
 import React from 'react'
-import { App, Button, useStore } from 'framework7-react'
-import routes from '../js/routes'
+import { App } from 'framework7-react'
 import store from '../js/store'
 import localforage from 'localforage'
 //Own components
@@ -22,8 +21,6 @@ const LocationBasedService = () => {
     theme: 'auto', // Automatic theme detection
     // App store
     store: store,
-    // App routes
-    routes: routes,
     // Register service worker (only on production build)
     // eslint-disable-next-line no-undef
     serviceWorker: process.env.NODE_ENV ==='production' ? {
