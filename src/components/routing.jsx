@@ -13,6 +13,10 @@ const Routing = (props) => {
   const reloadMap = useStore('reloadMap')
   const destination = useStore('destination')
 
+  // Handles creation of markers
+  // - adds icon
+  // - listens on dragging
+  // - handles draggable (true/false)
   const createMarkerHandler = (i, waypoint, _) => {
     let marker = null
     if (i == 0) {
@@ -44,6 +48,7 @@ const Routing = (props) => {
   }
 
   function loadRoute(latlng) {
+    // creates Route control object
     const control = L.Routing.control({
       language: 'de',
       formatter:  new L.Routing.Formatter({ language: 'de' }),
@@ -57,11 +62,13 @@ const Routing = (props) => {
 
     store.dispatch('newRouteControl', control)
 
+    // when new routes are found then add the instructions to the store
     control.on('routesfound', (e) => {
       store.dispatch('newRouteInstructions', e.routes[0])
     })
   }
 
+  // reload map when triggered by store
   useEffect(() => {
     if (destination != null && props.user != null) {
       if (previousControl) { map.removeControl(previousControl) }
@@ -69,6 +76,7 @@ const Routing = (props) => {
     }
   }, [reloadMap])
 
+  // listen map click event
   useMapEvents({
     click(e) {
       store.dispatch('newDestination', e.latlng)
