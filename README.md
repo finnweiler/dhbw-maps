@@ -47,7 +47,7 @@ Ziel der Aufgabenstellung war die Entwicklung einer Web Applikation in Form eine
 ### Online
 [🔗 https://webeng.fwapis.com/](https://webeng.fwapis.com/)
 
-⚠️ Um zu verhindern, dass veraltete Daten im Cache die Funktionalität der Website behindern, sollten die lokalen Websitedaten vor dem Testen geleert werden: z.B. in Chrome: Inspect :arrow_right: Application :arrow_right: Storage :arrow_right: Clear Site Data :arrow_right: Seite neu laden
+⚠️ Um zu verhindern, dass veraltete Daten im Cache die Funktionalität der Website behindern, sollten die lokalen Websitedaten vor dem Testen geleert werden: z.B. in Chrome: Inspect :arrow_right: Application :arrow_right: Storage :arrow_right: Clear Site Data :arrow_right: Seite neu laden mit `STRG + F5`
 
 ## Entwickler
 Alle Entwickler sind Studenten des TIT19-Kurses der DHBW Ravensburg/Campus Friedrichshafen
