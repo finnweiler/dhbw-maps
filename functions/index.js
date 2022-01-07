@@ -103,7 +103,7 @@ exports.getWikiData = functions.region('europe-west1').https.onRequest( async (r
 
       // Need to check for disambiguation pages to handle them better on the frontend
       await page.categories().then(categories => {
-        if (categories[0] === 'Kategorie:Begriffserklärung') {
+        if (categories[0] === 'Kategorie:Begriffsklärung') {
           output.disambiguation = true
         }else{
           output.disambiguation = false
