@@ -29,7 +29,7 @@ Ziel der Aufgabenstellung war die Entwicklung einer Web Applikation in Form eine
 - Folgende Funktionalitäten sind am unteren Bildschirmrand über Buttons gegeben (von links nach rechts):
   - Info-Button: Information zum Zielstandort
   - Pfeil-Button: Informationen zum aktuellen Standort
-  - Zentrieren-Button: Fokus der Karte auf aktuelle Position/Route und aktualisieren des eigenen Standortes
+  - Zentrieren-Button: Fokus der Karte auf aktuelle Position/Route und Aktualisieren des eigenen Standortes
   - Glocke-Button: (De)Aktivieren von Benachrichtigungen
   - Route-Button: Einblenden der aktuellen Wegbeschreibung
 ### Screenshots
