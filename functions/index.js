@@ -82,8 +82,6 @@ exports.getWikiData = functions.region('europe-west1').https.onRequest( async (r
 
     await wiki({ apiUrl: 'https://en.wikipedia.org/w/api.php' }).page(city).then(async page => {
 
-      output.url = page.fullurl
-
       await page.fullInfo().then(async info => {
 
         // Check which value is set. Wikipedia has different key-names for 
@@ -108,6 +106,8 @@ exports.getWikiData = functions.region('europe-west1').https.onRequest( async (r
     })
 
     await wiki({ apiUrl: `https://${LANGUAGE_SUMMARY}.wikipedia.org/w/api.php` }).page(city).then(async page => {
+
+      output.url = page.fullurl
           
       await page.summary().then(summary => {
         let outputSummary
