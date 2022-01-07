@@ -71,4 +71,4 @@ Alle Entwickler sind Studenten des TIT19-Kurses der DHBW Ravensburg/Campus Fried
   - Safari on iOS
   - WebView Android
   - Internet Explorer
-- Selbige Browser unterstützen auch nicht das automatische Anpassen der aktuellen Position nach der Vergabe der Standort-Berechtigung. (Ausgenommen hiervon ist die erste Anpassung, die immer funktioniert.
+- Selbige Browser unterstützen auch nicht das automatische Anpassen der aktuellen Position nach der Vergabe der Standort-Berechtigung. (Ausgenommen hiervon ist die erste Anpassung, die immer funktioniert.)
