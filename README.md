@@ -19,6 +19,7 @@ Ziel der Aufgabenstellung war die Entwicklung einer Web Applikation in Form eine
 - Alle Side Cards können durch klicken auf die Karte verlassen werden und über entsprechende Buttons wieder eingeblendet werden
 - Benachrichtigungen können deaktiviert/aktiviert werden und erinnern den Nutzer wenn nötig in regelmäßigen Abständen, seinen Standort zu aktivieren
 ### Screenshots
+<img src="readme-screenshots/Screenshot_main_page.png" width=252 height=264> <img src="readme-screenshots/Screenshot_left_card.png" width=98 height=264> <img src="readme-screenshots/Screenshot_right_card.png" width=98 height=264>
 ## Ausführen der Anwendung
 ### Lokal
 1. Repository klonen
