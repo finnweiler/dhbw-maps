@@ -95,7 +95,7 @@ class NotificationButton extends React.Component {
       // call notify_check every 5 Minutes
       this.interval = setInterval(() => {
         this.notify_check()
-      }, 5000)
+      }, 300000)
     }
     else{
       //deactivate the periodically call of notify_check
