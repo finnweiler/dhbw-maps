@@ -90,6 +90,30 @@ exports.getWikiData = functions.region('europe-west1').https.onRequest( async (r
       output.postalCodes += ', ...'
     }
 
+    await wiki({ apiUrl: `https://${LANGUAGE_SUMMARY}.wikipedia.org/w/api.php` }).page(city).then(async page => {
+
+      output.url = page.fullurl
+          
+      await page.summary().then(summary => {
+        let outputSummary
+        outputSummary = summary.substring(0, MAX_CHARS_SUMMARY)
+        outputSummary += '...'
+        output.summary = outputSummary
+      })
+
+      // Need to check for disambiguation pages to handle them better on the frontend
+      await page.categories().then(categories => {
+        if (categories[0] === 'Kategorie:Begriffserklärung') {
+          output.disambiguation = true
+        }else{
+          output.disambiguation = false
+        }
+      })
+
+    })
+
+    // Using the english Wikipedia API since there are mostly more information there, 
+    // especially for popular cities like Berlin or Paris
     await wiki({ apiUrl: 'https://en.wikipedia.org/w/api.php' }).page(city).then(async page => {
 
       await page.fullInfo().then(async info => {
@@ -111,18 +135,6 @@ exports.getWikiData = functions.region('europe-west1').https.onRequest( async (r
 
       await page.mainImage().then(imageUrl => {
         output.image = imageUrl
-      })
-    })
-
-    await wiki({ apiUrl: `https://${LANGUAGE_SUMMARY}.wikipedia.org/w/api.php` }).page(city).then(async page => {
-
-      output.url = page.fullurl
-          
-      await page.summary().then(summary => {
-        let outputSummary
-        outputSummary = summary.substring(0, MAX_CHARS_SUMMARY)
-        outputSummary += '...'
-        output.summary = outputSummary
       })
 
     })
