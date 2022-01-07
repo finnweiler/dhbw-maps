@@ -10,11 +10,9 @@ const Map = () => {
   const [position, setPosition] = useState({lat: 47.665753037254085, lng: 9.447255091829561})
   const [map, setMap] = useState(null)
   const address = useStore('address')
+  const reloadPosition = useStore('reloadPosition')
 
-
-  function getUserLocation(){
-    store.dispatch('newCurrentPosition', position)
-    // https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/Using_geolocation
+  function refreshUserLocation(){
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(position => {
         const current = {
@@ -23,6 +21,7 @@ const Map = () => {
         }
         setPosition(current)
         store.dispatch('newCurrentPosition', current)
+        store.dispatch('newReloadMap')
       })
     } else {
       // Browser doesn't support Geolocation
@@ -30,9 +29,23 @@ const Map = () => {
     }
   }
 
+  function permissionListener(){
+    navigator.permissions.query({name:'geolocation'}).then(function(permissionStatus) {
+      permissionStatus.onchange = function() {
+        //refreshUserLocation()
+      }
+    })
+  }
+
   useEffect(() => {
-    getUserLocation()
+    store.dispatch('newCurrentPosition', position)
+    refreshUserLocation()
+    permissionListener()
   }, [])
+
+  useEffect(() => {
+    refreshUserLocation()
+  }, [reloadPosition])
 
   useEffect(() => {
     if (map != null) {

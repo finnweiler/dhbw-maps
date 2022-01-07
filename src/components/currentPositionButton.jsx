@@ -3,19 +3,16 @@ import {Button, Icon, useStore } from 'framework7-react'
 import store from '../js/store'
 
 const CurrentPositionButton = () =>{
-    
-  const position = useStore('currentPosition')
 
-  function showWikipedia(){
-    store.dispatch('openWikiPanel')
-    store.dispatch('newProgrammaticSearch', `${position.lat}, ${position.lng}`)
+  function refreshPosition(){
+    store.dispatch('newReloadPosition')
   }
   
   return (
-    <div style={{zIndex: 1000, position: 'absolute', bottom: '25px', left: '55px'}}>        
+    <div style={{zIndex: 1000, position: 'absolute', bottom: '25px', left: '95px'}}>        
       <Button fill raised
-        onClick={() => {showWikipedia()}}>
-        <Icon size='18' f7='info'></Icon>
+        onClick={() => {refreshPosition()}}>
+        <Icon size='18' f7='location_circle'></Icon>
       </Button>
     </div>
   )

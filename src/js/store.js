@@ -12,6 +12,7 @@ const store = createStore({
     currentPosition: null,
     programmaticSearch: null,
     reloadMap: false,
+    reloadPosition: false,
   },
   getters: {
     route({ state }) {
@@ -40,6 +41,9 @@ const store = createStore({
     },
     reloadMap({ state }) {
       return state.reloadMap
+    },
+    reloadPosition({ state }) {
+      return state.reloadPosition
     }
   },
   actions: {
@@ -70,9 +74,12 @@ const store = createStore({
     newProgrammaticSearch({ state }, programmaticSearch) {
       state.programmaticSearch = programmaticSearch
     },
-    newReloadMap({ state }, reloadMap) {
-      state.reloadMap = reloadMap
-    }
+    newReloadMap({ state }) {
+      state.reloadMap = !state.reloadMap
+    },
+    newReloadPosition({ state }) {
+      state.reloadPosition = !state.reloadPosition
+    },
   },
 })
 
