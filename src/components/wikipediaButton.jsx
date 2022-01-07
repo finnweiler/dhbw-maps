@@ -18,7 +18,7 @@ const WikipediaButton = () =>{
       <Button fill raised 
         onClick={() => {showWikipedia()}}
         disabled={!destination}>
-        <Icon size='18' f7='location'></Icon>
+        <Icon size='18' f7='info'></Icon>
       </Button>
     </div>
   )

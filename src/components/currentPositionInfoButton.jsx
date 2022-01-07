@@ -15,7 +15,7 @@ const CurrentPositionInfoButton = () =>{
     <div style={{zIndex: 1000, position: 'absolute', bottom: '25px', left: '55px'}}>        
       <Button fill raised
         onClick={() => {showWikipedia()}}>
-        <Icon size='18' f7='info'></Icon>
+        <Icon size='18' f7='location'></Icon>
       </Button>
     </div>
   )
