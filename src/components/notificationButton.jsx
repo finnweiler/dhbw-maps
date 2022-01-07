@@ -13,11 +13,15 @@ class NotificationButton extends React.Component{
       notification_activate: false
     }
 
+    //register service workers for handling the notifications
+    //one service worker for an distinct event
     navigator.serviceWorker.register('../js/notifications/geolocation/sw.js')
     navigator.serviceWorker.register('../js/notifications/other/sw.js')
 
+    //listen to messages from the service workers
     navigator.serviceWorker.onmessage = (event) => {
       if (event.data && event.data.type === 'notification_geolocation') {
+        //open the geolocation prompt
         navigator.geolocation.getCurrentPosition(() => {})
       }
     }
@@ -31,10 +35,7 @@ class NotificationButton extends React.Component{
     //ask for permission if not already granted
     const result = await Notification.requestPermission()
     if (result === 'granted') {
-      /*new Notification(titel, {
-        body: body,
-        icon: icon
-      }).onclick = click_function*/
+      //send a notification with the specified service worker
       return await navigator.serviceWorker.getRegistration(service_worker_url).then(function(registration) {
         if(registration != null && registration.active != null){
           registration.showNotification(titel, {
@@ -75,6 +76,8 @@ class NotificationButton extends React.Component{
     } 
   }
 
+  //try to send the "activated notifications" message
+  //retry up to (default) 5 times with a spacing of 1 second (needed if the service worker is not installed at the beginning) 
   async send_activated_notfication(max_tries=5){
     console.log(max_tries)
     let return_value = await this.notify('Benachrichtigungen aktiviert!',
