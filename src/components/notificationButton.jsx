@@ -63,13 +63,13 @@ class NotificationButton extends React.Component{
     if(permission_state === 'denied'){
       this.notify('Du hast den Standortzugriff verweigert!',
         'Bitte aktiviere den Standortzugriff, um eine sinnvolle Routenplanung zu erhalten.',
-        '/icons/gps_icon',
+        './icons/gps_icon.png',
         'notifications-sw/geolocation/')
     }
     else if (permission_state === 'prompt'){
       this.notify('Tipp: Nutzung vereinfachen!',
         'Um eine schnelle Nutzung zu ermöglichen, erlaube einen dauerhaften Zugriff auf deinen Standort.',
-        '/icons/gps_icon',
+        './icons/gps_icon.png',
         'notifications-sw/geolocation/')
     } 
   }
@@ -79,7 +79,7 @@ class NotificationButton extends React.Component{
   async send_activated_notfication(max_tries=5){
     let return_value = await this.notify('Benachrichtigungen aktiviert!',
       'Vielen Dank für das Aktivieren der Benachrichtigungen.',
-      '/icons/bell_icon',
+      './icons/bell_icon.png',
       'js/notifications/other/')
     if(max_tries > 0 && !return_value){
       setTimeout(this.send_activated_notfication.bind(this), 1000, max_tries-1)
