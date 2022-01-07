@@ -19,6 +19,7 @@ const Routing = (props) => {
   // - handles draggable (true/false)
   const createMarkerHandler = (i, waypoint, _) => {
     let marker = null
+
     if (i == 0) {
       marker = L.marker(waypoint.latLng, {
         draggable: false,
@@ -28,9 +29,12 @@ const Routing = (props) => {
           iconAnchor: [15, 49],
         })
       })
+      
+      // when dragging is over set the new destination {lat, lng}
       marker.on('dragend', (e) => {
         store.dispatch('newCurrentPosition', e.target._latlng)
       })
+
     } else {
       marker = L.marker(waypoint.latLng, {
         draggable: true,
@@ -40,9 +44,12 @@ const Routing = (props) => {
           iconAnchor: [15, 49],
         })
       })
+
+      // when dragging is over set the new destination {lat, lng}
       marker.on('dragend', (e) => {
         store.dispatch('newDestination', e.target._latlng)
       })
+
     }
     return marker
   }
