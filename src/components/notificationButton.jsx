@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { Block, List, ListItem, Button, Icon } from 'framework7-react'
 
 //class to handle all notficiations
-class NotificationButton extends React.Component{
-  constructor (){
+class NotificationButton extends React.Component {
+  constructor () {
     super()
 
     //default = no notifications 
@@ -95,7 +95,7 @@ class NotificationButton extends React.Component{
       // call notify_check every 5 Minutes
       this.interval = setInterval(() => {
         this.notify_check()
-      }, 5000)
+      }, 300000)
     }
     else{
       //deactivate the periodically call of notify_check

@@ -1,5 +1,5 @@
 import React from 'react'
-import {Button, Icon, useStore } from 'framework7-react'
+import {Button, Icon } from 'framework7-react'
 import store from '../js/store'
 
 const CurrentPositionButton = () =>{
