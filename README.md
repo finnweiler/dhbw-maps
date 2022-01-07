@@ -62,4 +62,4 @@ Alle Entwickler sind Studenten des TIT19-Kurses der DHBW Ravensburg/Campus Fried
 - Julian Basri Yaman (Scrum Master)
 
 ## Known Issues
-- Es gibt in der Leaflet Routing Machine Bibliothek eine knwon Issue, die gelegentlich eine Fehlermeldung in der Konsole produziert. Das schränkt die Funktion unserer Anwendung allerdings nicht weiter ein. 
+- Es gibt in der Leaflet Routing Machine Bibliothek eine [knwon Issue](https://github.com/mapbox/owlviewer/issues/21), die gelegentlich eine Fehlermeldung in der Konsole produziert. Das schränkt die Funktion unserer Anwendung allerdings nicht weiter ein. 
