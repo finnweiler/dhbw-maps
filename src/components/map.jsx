@@ -32,7 +32,7 @@ const Map = () => {
   function permissionListener(){
     navigator.permissions.query({name:'geolocation'}).then(function(permissionStatus) {
       permissionStatus.onchange = function() {
-        //refreshUserLocation()
+        refreshUserLocation()
       }
     })
   }
