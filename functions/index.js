@@ -45,6 +45,7 @@ exports.getWikiData = functions.region('europe-west1').https.onRequest( async (r
       ?country 
       ?countryLabel 
       (GROUP_CONCAT(?postalCode; separator=", ") AS ?postalCodes)
+      ?website
       WHERE {
         ?town ?label "${city}"@de.
         ?town wdt:P2046 ?area.
@@ -53,11 +54,12 @@ exports.getWikiData = functions.region('europe-west1').https.onRequest( async (r
         OPTIONAL { 
           ?town wdt:P281 ?postalCode
         }. 
+        ?town wdt:P856 ?website.
         SERVICE wikibase:label { 
           bd:serviceParam wikibase:language "[AUTO_LANGUAGE], de". 
         }
       }
-      group by ?town ?townLabel ?area ?population ?country ?countryLabel
+      group by ?town ?townLabel ?area ?population ?country ?countryLabel ?website
       `
 
     const url = wbk.sparqlQuery(sparqlQuery)
@@ -79,6 +81,7 @@ exports.getWikiData = functions.region('europe-west1').https.onRequest( async (r
     output.area = cityData.area?.value
     output.country = cityData.countryLabel?.value
     output.postalCodes = cityData.postalCodes?.value
+    output.website = cityData.website?.value.toString().replace("<", "").replace(">", "")
 
     await wiki({ apiUrl: 'https://en.wikipedia.org/w/api.php' }).page(city).then(async page => {
 
@@ -96,8 +99,7 @@ exports.getWikiData = functions.region('europe-west1').https.onRequest( async (r
           // If none of the values was set, then set it to undefined.
           output.mayor = undefined
         }
-
-        output.website = info.general.website
+        
       })
 
       await page.mainImage().then(imageUrl => {
