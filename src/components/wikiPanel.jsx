@@ -18,8 +18,8 @@ const WikiPanel = () => {
       lat: currentEntry.coords.lat,
       lng: currentEntry.coords.lng
     }
-    store.dispatch('newAddress', position)
-    store.dispatch('newPanelOpened', true)
+    store.dispatch('newDestination', position)
+    store.dispatch('openRoutePanel')
     store.dispatch('newReloadMap', position)
   }
 
