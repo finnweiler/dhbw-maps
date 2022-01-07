@@ -43,7 +43,7 @@ Ziel der Aufgabenstellung war die Entwicklung einer Web Applikation in Form eine
 1. Repository klonen
 2. Dependencies installieren `npm install`
 3. Development Server starten `npm start`
-4. [Seite im Browser öffnen](http://localhost:3000/)
+4. Seite im Browser öffnen
 ### Online
 [Seite im Browser aufrufen](https://webeng.fwapis.com/)
 ### Anmerkung
