@@ -67,3 +67,8 @@ Alle Entwickler sind Studenten des TIT19-Kurses der DHBW Ravensburg/Campus Fried
 
 ## Known Issues
 - Es gibt in der Leaflet Routing Machine Bibliothek eine [known Issue](https://github.com/mapbox/owlviewer/issues/21), die gelegentlich eine Fehlermeldung in der Konsole produziert. Das schränkt die Funktion unserer Anwendung allerdings nicht weiter ein. 
+- Leider wird das Anzeigen von Benachrichtigungen von den folgdenen Browser nicht unterstützt:
+  - Safari
+  - Safari on iOS
+  - WebView Android
+  - Internet Explorer
