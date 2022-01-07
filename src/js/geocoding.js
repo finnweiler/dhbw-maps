@@ -5,7 +5,7 @@ export function ReverseGeocoding(lng, lat){
     })
   return location
 }
-
+//make every search (for example City, Adress etc) possible
 export function Geocoding(searchString){
   let coords = fetch('https://nominatim.openstreetmap.org/search?format=json&q=' + searchString)
     .then(function(response){
@@ -19,4 +19,3 @@ export function Geocoding(searchString){
     })
   return coords
 }
-

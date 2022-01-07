@@ -36,7 +36,7 @@ const Map = () => {
       }
     })
   }
-
+  //set current position to DHBW FN and start listen if permission for geolocation position is activated
   useEffect(() => {
     store.dispatch('newCurrentPosition', position)
     refreshUserLocation()

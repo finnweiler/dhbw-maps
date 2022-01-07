@@ -5,7 +5,7 @@ import store from '../js/store'
 const WikipediaButton = () =>{
     
   const destination = useStore('address')
-
+  //if destination Adress is present add it into the Searchbar and open WikiPanel
   function showWikipedia(){
     if(destination != null){
       store.dispatch('openWikiPanel')

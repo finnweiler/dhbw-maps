@@ -5,7 +5,7 @@ import store from '../js/store'
 const RoutingButton = () =>{
     
   const destination = useStore('address')
-
+  //open Panel only if a Route is present
   function startRouting(){
     if(destination != null){
       store.dispatch('newPanelOpened', true)

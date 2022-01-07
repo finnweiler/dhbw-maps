@@ -5,7 +5,7 @@ import store from '../js/store'
 const CurrentPositionInfoButton = () =>{
     
   const position = useStore('currentPosition')
-
+  //add CurrentPosition into the Searchbar and open WikiPanel
   function showWikipedia(){
     store.dispatch('openWikiPanel')
     store.dispatch('newProgrammaticSearch', `${position.lat}, ${position.lng}`)
