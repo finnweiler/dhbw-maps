@@ -6,13 +6,13 @@ import store from '../js/store'
 
 const RoutePanel = () => {
 
-  const route = useStore('route')
-  const panelOpened = useStore('panelOpened')
+  const routeInstructions = useStore('routeInstructions')
+  const isRoutePanelOpen = useStore('isRoutePanelOpen')
   
   const formatter = new L.Routing.Formatter({language: 'de'})
 
   function PanelClosing() {
-    store.dispatch('newPanelOpened', false)
+    store.dispatch('closeRoutePanel')
   }
 
 
@@ -21,22 +21,22 @@ const RoutePanel = () => {
       right 
       cover 
       themeDark 
-      opened={panelOpened}
+      opened={isRoutePanelOpen}
       onPanelClose={() => {PanelClosing()}}
     >
       <View>
         <Page>
           <Navbar title='Wegbeschreibung'/>
           <Block>
-            <BlockTitle>{route?.name}</BlockTitle>
+            <BlockTitle>{routeInstructions?.name}</BlockTitle>
             <Block strong>
               <BlockTitle>Zusammenfassung</BlockTitle>
-              <p>Distanz: {formatter.formatDistance(route?.summary.totalDistance, 10)}</p>
-              <p>Zeit: {formatter.formatTime(route?.summary.totalTime)}</p>
+              <p>Distanz: {formatter.formatDistance(routeInstructions?.summary.totalDistance, 10)}</p>
+              <p>Zeit: {formatter.formatTime(routeInstructions?.summary.totalTime)}</p>
             </Block>
             <Block strong>
               <BlockTitle>Wegbeschreibung</BlockTitle>
-              {route?.instructions?.map((instruction, i) => {
+              {routeInstructions?.instructions?.map((instruction, i) => {
                 return (
                   <p key={instruction+i}>{i+1}. {formatter.formatInstruction(instruction)}</p>  
                 )

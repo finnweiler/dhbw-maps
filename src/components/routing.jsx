@@ -11,9 +11,51 @@ const Routing = (props) => {
   const previousControl = useStore('routeControl')
 
   const reloadMap = useStore('reloadMap')
-  const address = useStore('address')
+  const destination = useStore('destination')
+
+  // Handles creation of markers
+  // - adds icon
+  // - listens on dragging
+  // - handles draggable (true/false)
+  const createMarkerHandler = (i, waypoint, _) => {
+    let marker = null
+
+    if (i == 0) {
+      marker = L.marker(waypoint.latLng, {
+        draggable: false,
+        icon: L.icon({
+          iconUrl: '/icons/red_marker.png',
+          iconSize: [29, 50],
+          iconAnchor: [15, 49],
+        })
+      })
+      
+      // when dragging is over set the new destination {lat, lng}
+      marker.on('dragend', (e) => {
+        store.dispatch('newCurrentPosition', e.target._latlng)
+      })
+
+    } else {
+      marker = L.marker(waypoint.latLng, {
+        draggable: true,
+        icon: L.icon({
+          iconUrl: '/icons/blue_marker.png',
+          iconSize: [29, 50],
+          iconAnchor: [15, 49],
+        })
+      })
+
+      // when dragging is over set the new destination {lat, lng}
+      marker.on('dragend', (e) => {
+        store.dispatch('newDestination', e.target._latlng)
+      })
+
+    }
+    return marker
+  }
 
   function loadRoute(latlng) {
+    // creates Route control object
     const control = L.Routing.control({
       language: 'de',
       formatter:  new L.Routing.Formatter({ language: 'de' }),
@@ -21,55 +63,30 @@ const Routing = (props) => {
       fitSelectedRoutes: true,
       addWaypoints: false,
       routeWhileDragging: true,
-      createMarker: (i, waypoint, n) => {
-        let marker = null
-        if (i == 0) {
-          marker = L.marker(waypoint.latLng, {
-            draggable: false,
-            icon: L.icon({
-              iconUrl: '/icons/red_marker.png',
-              iconSize: [29, 50],
-              iconAnchor: [15, 49],
-            })
-          })
-          marker.on('dragend', (e) => {
-            store.dispatch('newCurrentPosition', e.target._latlng)
-          })
-        } else {
-          marker = L.marker(waypoint.latLng, {
-            draggable: true,
-            icon: L.icon({
-              iconUrl: '/icons/blue_marker.png',
-              iconSize: [29, 50],
-              iconAnchor: [15, 49],
-            })
-          })
-          marker.on('dragend', (e) => {
-            store.dispatch('newAddress', e.target._latlng)
-          })
-        }
-        return marker
-      }
+      createMarker: createMarkerHandler
     }).addTo(map)
 
 
     store.dispatch('newRouteControl', control)
 
+    // when new routes are found then add the instructions to the store
     control.on('routesfound', (e) => {
-      store.dispatch('newRoute', e.routes[0])
+      store.dispatch('newRouteInstructions', e.routes[0])
     })
   }
 
+  // reload map when triggered by store
   useEffect(() => {
-    if (address != null && props.user != null) {
+    if (destination != null && props.user != null) {
       if (previousControl) { map.removeControl(previousControl) }
-      loadRoute(address)
+      loadRoute(destination)
     }
   }, [reloadMap])
 
+  // listen map click event
   useMapEvents({
     click(e) {
-      store.dispatch('newAddress', e.latlng)
+      store.dispatch('newDestination', e.latlng)
       store.dispatch('newReloadMap')
     }
   })

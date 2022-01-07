@@ -9,7 +9,7 @@ const Map = () => {
   
   const [position, setPosition] = useState({lat: 47.665753037254085, lng: 9.447255091829561})
   const [map, setMap] = useState(null)
-  const address = useStore('address')
+  const address = useStore('destination')
   const reloadPosition = useStore('reloadPosition')
 
   function refreshUserLocation(){
@@ -36,7 +36,7 @@ const Map = () => {
       }
     })
   }
-
+  //set current position to DHBW FN and start listen if permission for geolocation position is activated
   useEffect(() => {
     store.dispatch('newCurrentPosition', position)
     refreshUserLocation()
