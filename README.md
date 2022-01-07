@@ -1,5 +1,6 @@
 # DHBW Maps | Der Kartenservice
-⚠️ Achtung: Wir nutzen für die Berechnung der Route einen kostenlosen Demoserver, der nicht für Production geeignet ist. Dieser ist nicht hochverfügbar und kann zeitweise ausfallen.
+### ⚠️ Achtung ⚠️
+Wir nutzen für die Berechnung der Route einen kostenlosen Demoserver, der nicht für Production geeignet ist. Dieser ist nicht hochverfügbar und kann zeitweise ausfallen.
 ## Rahmenbedingungen
 Entwicklung der Anwendung im Rahmen der Vorlesung **Web Engineering**.  
 Ziel der Aufgabenstellung war die Entwicklung einer Web Applikation in Form einer PWA, welche eine Karte darstellt, auf welcher der Nutzer seine Position einsehen kann. Der Nutzer kann dann Orte suchen, zu welchen er eine Navigation starten und einen Auszug des dazugehörigen Wikipedia-Artikels einsehen kann.
@@ -13,7 +14,11 @@ Ziel der Aufgabenstellung war die Entwicklung einer Web Applikation in Form eine
 - Karte im Vollbildformat mit der Möglichkeit, diese zu vergrößern/verkleinern/verschieben
   - Ansicht des eigenen Standorts (bei deaktivierten Standortdiensten der Standort der DHBW)
   - Anzeige des Zielstandorts mit Route (wenn angefordert)  
-- Zentrale Suchleiste mit Search History zur Suche nach Orten
+- Zentrale Suchleiste mit Verlauf zur Suche
+  - nach Orten, z.B. `Berlin`, `Hamburg`, ...
+  - nach Adressen, z.B. `Fallenbrunnen 2, 88045 Friedrichshafen`, ...
+  - und nach Geokoordinaten, z.B. `49.79899569636492, 9.939880371093752`.
+  - Der Verlauf wird außerdem lokal gesichert und die Suche lässt sich offline wiederholen.
 - Nach Eingabe einer Suche öffnet sich links eine Side Card mit Informationen zu dem Ort und der Möglichkeit die Route dorthin zu starten oder die dazugehörige Wikipedia-Seite aufzurufen
 - Starten einer Route öffnet rechte Side Card mit Routen-Beschreibung
 - Alle Side Cards können durch Klicken auf die Karte verlassen werden und über folgende Buttons wieder eingeblendet werden
@@ -55,3 +60,6 @@ Alle Entwickler sind Studenten des TIT19-Kurses der DHBW Ravensburg/Campus Fried
 - Finn Weiler (Scrum Master)
 - Kai Weinmann
 - Julian Basri Yaman (Scrum Master)
+
+## Known Issues
+- Es gibt in der Leaflet Routing Machine Bibliothek eine knwon Issue, die gelegentlich eine Fehlermeldung in der Konsole produziert. Das schränkt die Funktion unserer Anwendung allerdings nicht weiter ein. 
