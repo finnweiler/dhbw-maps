@@ -19,9 +19,9 @@ Ziel der Aufgabenstellung war die Entwicklung einer Web Applikation in Form eine
   - nach Adressen, z.B. `Fallenbrunnen 2, 88045 Friedrichshafen`, ...
   - und nach Geokoordinaten, z.B. `49.79899569636492, 9.939880371093752`.
   - Der Verlauf wird außerdem lokal gesichert und die Suche lässt sich offline wiederholen.
-- Nach Eingabe einer Suche öffnet sich links eine Side Card mit Informationen zu dem Ort und der Möglichkeit die Route dorthin zu starten oder die dazugehörige Wikipedia-Seite aufzurufen
-- Starten einer Route öffnet rechte Side Card mit Routen-Beschreibung
-- Alle Side Cards können durch Klicken auf die Karte verlassen werden und über folgende Buttons wieder eingeblendet werden
+- Nach Eingabe einer Suche öffnet sich links eine Side-Card mit Informationen zu dem Ort und der Möglichkeit die Route dorthin zu starten oder die dazugehörige Wikipedia-Seite aufzurufen
+- Starten einer Route öffnet rechte Side-Card mit einer Routen-Beschreibung
+- Alle Side-Cards können durch Klicken auf die Karte verlassen werden und über folgende Buttons wieder eingeblendet werden
 - Benachrichtigungen können über den "Glocke"-Button deaktiviert/aktiviert werden und erinnern den Nutzer, wenn nötig, in regelmäßigen Abständen seinen Standort dauerhaft zu aktivieren
 - Folgende Funktionalitäten sind am oberen Bildschirmrand über Buttons gegeben (von links nach rechts):
   - Plus/Minus-Button: Vergrößern und Verkleinern der Karte
@@ -29,7 +29,7 @@ Ziel der Aufgabenstellung war die Entwicklung einer Web Applikation in Form eine
 - Folgende Funktionalitäten sind am unteren Bildschirmrand über Buttons gegeben (von links nach rechts):
   - Info-Button: Information zum Zielstandort
   - Pfeil-Button: Informationen zum aktuellen Standort
-  - Zentrieren-Button: Fokus der Karte auf aktuelle Position/Route
+  - Zentrieren-Button: Fokus der Karte auf aktuelle Position/Route und aktualisieren des eigenen Standortes
   - Glocke-Button: (De)Aktivieren von Benachrichtigungen
   - Route-Button: Einblenden der aktuellen Wegbeschreibung
 ### Screenshots
