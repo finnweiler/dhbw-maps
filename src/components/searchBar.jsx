@@ -32,6 +32,9 @@ const SearchBar = () => {
     }
   }, [programmaticSearch])
 
+  // Prüft ob der Suchbegriff bereits in der Lokalen Datenbank vorhanden ist
+  // und fragt andernfalls die Daten ab.
+  // Das Ergebnis wird im WikiPanel angezeigt.
   const handleSearch = async (entryText) => {
 
     console.log('Searching for: ', entryText)
@@ -53,6 +56,8 @@ const SearchBar = () => {
 
       if (!foundSearchTextInSearchHistory) {
 
+        // Reguläre Ausdruck um zu überprüfen, ob es sich bei der Nutzereingabe um einen Längen- und Breitengrad handelt.
+        // Übernommen aus https://stackoverflow.com/a/18690202/7179628
         const regExGeoCoords = RegExp(/^[-+]?([1-8]?\d(\.\d+)?|90(\.0+)?),\s*[-+]?(180(\.0+)?|((1[0-7]\d)|([1-9]?\d))(\.\d+)?)$/)
         
         let newCoords
@@ -85,6 +90,7 @@ const SearchBar = () => {
           newWikiData = 'not found'
         }
 
+        // Fügt sowohl die Daten zum Suchbegriff, als auch die Daten zugeordnet zu den Geokoordinaten in die SearchHistory ein.
         let newHistoryEntry = {
           text: entryText,
           coords: newCoords,
@@ -126,6 +132,7 @@ const SearchBar = () => {
       return searchHistory.map((entry, index) => {
         return (
           <div key={index}>
+            {/* Filtert die Suchergebnisse in der lokalen Datenbank nach dem Suchstring */}
             {entry.text.toLowerCase().includes(searchText.toLowerCase()) ?
               <ListItem className="searchBarResult" title={entry.text} onClick={() => {setSearchText(entry.text), handleSearch(entry.text)}} />
               :null}
