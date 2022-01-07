@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react'
-import { Block, List, ListItem, Button, Icon } from 'framework7-react'
+import React from 'react'
+import { Button, Icon } from 'framework7-react'
 
 //class to handle all notficiations
 class NotificationButton extends React.Component {

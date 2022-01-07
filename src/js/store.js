@@ -1,4 +1,3 @@
-
 import { createStore } from 'framework7/lite'
 
 /** Description of store Items:
