@@ -45,10 +45,9 @@ Ziel der Aufgabenstellung war die Entwicklung einer Web Applikation in Form eine
 3. Development Server starten `npm start`
 4. Seite im Browser öffnen
 ### Online
-[Seite im Browser aufrufen](https://webeng.fwapis.com/)
-### Anmerkung
-Um die volle Funktionalität der Seite (vor allem nach Versionsänderungen) zu gewährleisten, sollte der Zwischenspeicher zu Beginn geleert werden:  
-z.B. in Chrome: Inspect :arrow_right: Application :arrow_right: Storage :arrow_right: Clear Site Data :arrow_right: Seite neu laden
+[🔗 https://webeng.fwapis.com/](https://webeng.fwapis.com/)
+
+⚠️ Um zu verhindern, dass veraltete Daten im Cache die Funktionalität der Website behindern, sollten die lokalen Websitedaten vor dem Testen geleert werden: z.B. in Chrome: Inspect :arrow_right: Application :arrow_right: Storage :arrow_right: Clear Site Data :arrow_right: Seite neu laden
 
 ## Entwickler
 Alle Entwickler sind Studenten des TIT19-Kurses der DHBW Ravensburg/Campus Friedrichshafen
