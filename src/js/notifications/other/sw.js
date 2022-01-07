@@ -1,0 +1,1 @@
+/* Dummy File for an empty service worker to send notifications*/

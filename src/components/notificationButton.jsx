@@ -13,27 +13,21 @@ class NotificationButton extends React.Component{
       notification_activate: false
     }
 
-    this.listen_for_notification_clicks()
+    navigator.serviceWorker.register('../js/notifications/geolocation/sw.js')
+    navigator.serviceWorker.register('../js/notifications/other/sw.js')
 
-    navigator.serviceWorker.register('../js/notification.js')
+    navigator.serviceWorker.onmessage = (event) => {
+      if (event.data && event.data.type === 'notification_geolocation') {
+        navigator.geolocation.getCurrentPosition(() => {})
+      }
+    }
 
     //bind this to the toggle_notifications function
     this.toggle_notifications = this.toggle_notifications.bind(this)     
   }
 
-  async listen_for_notification_clicks(){
-    console.log("a")
-    navigator.serviceWorker.onmessage = (event) => {
-      console.log("hier")
-      if (event.data && event.data.type === 'notification_geolocation') {
-        console.log("click")
-      }
-    }
-    console.log("b")
-  }
-
   //send a notification
-  async notify (titel, body, icon, click_function) {
+  async notify (titel, body, icon, service_worker_url) {
     //ask for permission if not already granted
     const result = await Notification.requestPermission()
     if (result === 'granted') {
@@ -41,17 +35,15 @@ class NotificationButton extends React.Component{
         body: body,
         icon: icon
       }).onclick = click_function*/
-      return await navigator.serviceWorker.getRegistration('js/').then(function(registration) {
+      return await navigator.serviceWorker.getRegistration(service_worker_url).then(function(registration) {
         if(registration != null && registration.active != null){
           registration.showNotification(titel, {
             body: body,
             icon: icon
           })
-          console.log('not')
           return true
         }
         else{
-          console.log('err')
           return false       
         }
       })
@@ -67,24 +59,19 @@ class NotificationButton extends React.Component{
     }).then(permission =>
       permission_state = permission.state           
     )
-    
-    //define a function to open the location prompt
-    let click_function = function() {
-      navigator.geolocation.getCurrentPosition(() => {})
-    }
 
     //send a message based on the permission state
     if(permission_state === 'denied'){
       this.notify('Du hast den Standortzugriff verweigert!',
         'Bitte aktiviere den Standortzugriff, um eine sinnvolle Routenplanung zu erhalten.',
         location_icon,
-        click_function)
+        'js/notifications/geolocation/')
     }
     else if (permission_state === 'prompt'){
       this.notify('Tipp: Nutzung vereinfachen!',
         'Um eine schnelle Nutzung zu ermöglichen, erlaube einen dauerhaften Zugriff auf deinen Standort.',
         location_icon,
-        click_function)
+        'js/notifications/geolocation/')
     } 
   }
 
@@ -93,7 +80,7 @@ class NotificationButton extends React.Component{
     let return_value = await this.notify('Benachrichtigungen aktiviert!',
       'Vielen Dank für das Aktivieren der Benachrichtigungen.',
       notification_bell,
-      null)
+      'js/notifications/other/')
     if(max_tries > 0 && !return_value){
       setTimeout(this.send_activated_notfication.bind(this), 1000, max_tries-1)
     }
