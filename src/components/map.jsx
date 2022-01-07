@@ -62,8 +62,8 @@ const Map = () => {
       />
       {
         !address ? 
-        <Marker position={position} icon={pointerIcon}></Marker>
-        : null
+          <Marker position={position} icon={pointerIcon}></Marker>
+          : null
       }
       <Routing user={position}></Routing>
     </MapContainer>

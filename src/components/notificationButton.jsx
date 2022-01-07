@@ -3,8 +3,6 @@ import { Block, List, ListItem, Button, Icon } from 'framework7-react'
 import notification_bell from '../notification_icons/bell_icon.png'
 import location_icon from '../notification_icons/gps_icon.png' // relative path to image 
 
-//navigator.serviceWorker.register('../js/notification.js')
-
 //class to handle all notficiations
 class NotificationButton extends React.Component{
   constructor (){
@@ -14,6 +12,8 @@ class NotificationButton extends React.Component{
     this.state = {
       notification_activate: false
     }
+
+    navigator.serviceWorker.register('../js/notification.js')
 
     //bind this to the toggle_notifications function
     this.toggle_notifications = this.toggle_notifications.bind(this)     
@@ -28,10 +28,19 @@ class NotificationButton extends React.Component{
         body: body,
         icon: icon
       }).onclick = click_function*/
-      let registration = await navigator.serviceWorker.register('../js/notification.js')
-      registration.showNotification(titel, {
-        body: body,
-        icon: icon
+      return await navigator.serviceWorker.getRegistration('js/').then(function(registration) {
+        if(registration != null && registration.active != null){
+          registration.showNotification(titel, {
+            body: body,
+            icon: icon
+          })
+          console.log('not')
+          return true
+        }
+        else{
+          console.log('err')
+          return false       
+        }
       })
     }
   }
@@ -66,15 +75,23 @@ class NotificationButton extends React.Component{
     } 
   }
 
-  toggle_notifications(){   
+  async send_activated_notfication(max_tries=5){
+    console.log(max_tries)
+    let return_value = await this.notify('Benachrichtigungen aktiviert!',
+      'Vielen Dank für das Aktivieren der Benachrichtigungen.',
+      notification_bell,
+      null)
+    if(max_tries > 0 && !return_value){
+      setTimeout(this.send_activated_notfication.bind(this), 1000, max_tries-1)
+    }
+  }
+
+  async toggle_notifications(){   
     if(!this.state.notification_activate)
     {
       //send notification if notifications get activated
-      this.notify('Benachrichtigungen aktiviert!',
-        'Vielen Dank für das Aktivieren der Benachrichtigungen.',
-        notification_bell,
-        null)
-      
+      this.send_activated_notfication()
+
       // call notify_check every 5 Minutes
       this.interval = setInterval(() => {
         this.notify_check()
