@@ -72,6 +72,12 @@ const SearchBar = () => {
           console.log('noRegEx', newCoords)
         }
 
+        if (!newCoords) {
+          console.log('No coordinates found')
+          store.dispatch('newCurrentWikiEntry', 'not found')
+          return
+        }
+
         let newGeolocation = await ReverseGeocoding(newCoords.lng, newCoords.lat)
         
         let cityName

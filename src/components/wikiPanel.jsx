@@ -40,61 +40,70 @@ const WikiPanel = () => {
         <Page>
           {currentEntry != null ?
             <React.Fragment>
-              {startEqualsEnd() ?
-                <Navbar title='Aktuelle Position'/>
-                :
-                <Navbar title={currentEntry.city}/>
-              }
-              <Block>
-                {startEqualsEnd() ?
-                  <BlockTitle>Aktuelle Position</BlockTitle>
-                  :
-                  <BlockTitle>Ziel-Adresse</BlockTitle>
-                }
-                <Block>{currentEntry.address}</Block>
-                {!startEqualsEnd() ?
-                  <Button fill raised
-                    style={{marginTop: '10px', marginBottom: '25px'}}
-                    onClick={() => {StartRoute()}}
-                  ><Icon f7="location" size="18" style={{marginRight: '10px'}} />Route starten</Button>
-                  :
-                  <div></div>
-                }
-              </Block>
-              <hr />
-              <Block>
-                {currentEntry.wikiData != 'not found' ?
-                  <React.Fragment>
-                    {/* Eine Städtenamen sind nicht Eindeutig oder haben mehrere Wikipedia Einträge (disambiguation = true). 
-                        In dem Fall werden kein Infos zur Stadt oder Bild gezeigt, sondern auf die Wikipedia Begriffsklärung verwiesen */}
-                    {currentEntry.wikiData.disambiguation ? 
+              {currentEntry !== 'not found' ?
+                <React.Fragment>
+                  {startEqualsEnd() ?
+                    <Navbar title='Aktuelle Position'/>
+                    :
+                    <Navbar title={currentEntry.city}/>
+                  }
+                  <Block>
+                    {startEqualsEnd() ?
+                      <BlockTitle>Aktuelle Position</BlockTitle>
+                      :
+                      <BlockTitle>Ziel-Adresse</BlockTitle>
+                    }
+                    <Block>{currentEntry.address}</Block>
+                    {!startEqualsEnd() ?
+                      <Button fill raised
+                        style={{marginTop: '10px', marginBottom: '25px'}}
+                        onClick={() => {StartRoute()}}
+                      ><Icon f7="location" size="18" style={{marginRight: '10px'}} />Route starten</Button>
+                      :
+                      <div></div>
+                    }
+                  </Block>
+                  <hr />
+                  <Block>
+                    {currentEntry.wikiData != 'not found' ?
                       <React.Fragment>
-                        <BlockTitle>Mehr Infos zur {currentEntry.city}</BlockTitle>
-                        <Block><p>{currentEntry.wikiData.summary}</p></Block>
-                        <Button fill raised onClick={() => {OpenWikipedia()}}>
-                          <Icon f7='info_circle' size='18' style={{marginRight: '10px'}} />Begriffsklärung
-                        </Button>
+                        {/* Eine Städtenamen sind nicht Eindeutig oder haben mehrere Wikipedia Einträge (disambiguation = true). 
+                            In dem Fall werden kein Infos zur Stadt oder Bild gezeigt, sondern auf die Wikipedia Begriffsklärung verwiesen */}
+                        {currentEntry.wikiData.disambiguation ? 
+                          <React.Fragment>
+                            <BlockTitle>Mehr Infos zur {currentEntry.city}</BlockTitle>
+                            <Block><p>{currentEntry.wikiData.summary}</p></Block>
+                            <Button fill raised onClick={() => {OpenWikipedia()}}>
+                              <Icon f7='info_circle' size='18' style={{marginRight: '10px'}} />Begriffsklärung
+                            </Button>
+                          </React.Fragment>
+                          :
+                          <React.Fragment>
+                            <BlockTitle>Mehr Infos zu {currentEntry.city}</BlockTitle>
+                            <Block strong>
+                              <p>{'Land: ' + currentEntry.wikiData.country}</p>
+                              <p>{'Postleitzahl: ' + currentEntry.wikiData.postalCodes || 'Unbekannt'}</p>
+                              <p>{'Einwohnerzahl: ' + currentEntry.wikiData.population || 'Unbekannt'}</p>
+                              <p>{'Bürgermeister: ' + currentEntry.wikiData.mayor || 'Unbekannt'}</p>
+                            </Block>
+                            <img src={currentEntry.wikiData.image} width='225' />
+                            <Block><p>{currentEntry.wikiData.summary}</p></Block>
+                            <Button fill raised onClick={() => {OpenWikipedia()}}>
+                              <Icon f7='info_circle' size='18' style={{marginRight: '10px'}} />Mehr lesen
+                            </Button>
+                          </React.Fragment>
+                        }
                       </React.Fragment>
                       :
-                      <React.Fragment>
-                        <BlockTitle>Mehr Infos zu {currentEntry.city}</BlockTitle>
-                        <Block strong>
-                          <p>{'Land: ' + currentEntry.wikiData.country}</p>
-                          <p>{'Postleitzahl: ' + currentEntry.wikiData.postalCodes || 'Unbekannt'}</p>
-                          <p>{'Einwohnerzahl: ' + currentEntry.wikiData.population || 'Unbekannt'}</p>
-                          <p>{'Bürgermeister: ' + currentEntry.wikiData.mayor || 'Unbekannt'}</p>
-                        </Block>
-                        <img src={currentEntry.wikiData.image} width='225' />
-                        <Block><p>{currentEntry.wikiData.summary}</p></Block>
-                        <Button fill raised onClick={() => {OpenWikipedia()}}>
-                          <Icon f7='info_circle' size='18' style={{marginRight: '10px'}} />Mehr lesen
-                        </Button>
-                      </React.Fragment>
-                    }
-                  </React.Fragment>
-                  :
-                  <Block><p>{ currentEntry.city + ' hat keinen Wikipedia Eintrag'}</p></Block>}
-              </Block>
+                      <Block><p>{ currentEntry.city + ' hat keinen Wikipedia Eintrag'}</p></Block>}
+                  </Block>
+                </React.Fragment>
+                :
+                <React.Fragment>
+                  <Navbar title='Entschuldigung'/>
+                  <Block><p>Wir konnten kein passendes Suchergebnis finden.</p></Block>
+                </React.Fragment>
+              }
             </React.Fragment>
             :
             <React.Fragment>
