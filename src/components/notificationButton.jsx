@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import { Block, List, ListItem, Button, Icon } from 'framework7-react'
-import notification_bell from '../notification_icons/bell_icon.png'
-import location_icon from '../notification_icons/gps_icon.png' // relative path to image 
 
 //class to handle all notficiations
 class NotificationButton extends React.Component{
@@ -15,8 +13,8 @@ class NotificationButton extends React.Component{
 
     //register service workers for handling the notifications
     //one service worker for an distinct event
-    navigator.serviceWorker.register('../js/notifications/geolocation/sw.js')
-    navigator.serviceWorker.register('../js/notifications/other/sw.js')
+    navigator.serviceWorker.register('./notifications-sw/geolocation/sw.js')
+    navigator.serviceWorker.register('./notifications-sw/other/sw.js')
 
     //listen to messages from the service workers
     navigator.serviceWorker.onmessage = (event) => {
@@ -65,24 +63,23 @@ class NotificationButton extends React.Component{
     if(permission_state === 'denied'){
       this.notify('Du hast den Standortzugriff verweigert!',
         'Bitte aktiviere den Standortzugriff, um eine sinnvolle Routenplanung zu erhalten.',
-        location_icon,
-        'js/notifications/geolocation/')
+        './icons/gps_icon.png',
+        'notifications-sw/geolocation/')
     }
     else if (permission_state === 'prompt'){
       this.notify('Tipp: Nutzung vereinfachen!',
         'Um eine schnelle Nutzung zu ermöglichen, erlaube einen dauerhaften Zugriff auf deinen Standort.',
-        location_icon,
-        'js/notifications/geolocation/')
+        './icons/gps_icon.png',
+        'notifications-sw/geolocation/')
     } 
   }
 
   //try to send the "activated notifications" message
   //retry up to (default) 5 times with a spacing of 1 second (needed if the service worker is not installed at the beginning) 
   async send_activated_notfication(max_tries=5){
-    console.log(max_tries)
     let return_value = await this.notify('Benachrichtigungen aktiviert!',
       'Vielen Dank für das Aktivieren der Benachrichtigungen.',
-      notification_bell,
+      './icons/bell_icon.png',
       'js/notifications/other/')
     if(max_tries > 0 && !return_value){
       setTimeout(this.send_activated_notfication.bind(this), 1000, max_tries-1)
