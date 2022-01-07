@@ -24,7 +24,7 @@ const WikiPanel = () => {
   }
 
   function startEqualsEnd() {
-    console.log('start', start, 'end', currentEntry.coords)
+    // Prüft ob Ziel und Startpunkt identisch sind
     return (start.lat == Number(currentEntry.coords.lat)
       && start.lng == Number(currentEntry.coords.lng))
   }
@@ -64,20 +64,34 @@ const WikiPanel = () => {
               </Block>
               <hr />
               <Block>
-                {currentEntry.wikiData != 'not found' ? 
+                {currentEntry.wikiData != 'not found' ?
                   <React.Fragment>
-                    <BlockTitle>Mehr Infos zur {currentEntry.city}</BlockTitle>
-                    <Block strong>
-                      <p>{'Land: ' +currentEntry.wikiData.country}</p>
-                      <p>{'Postleitzahl: ' + currentEntry.wikiData.postalCodes}</p>
-                      <p>{'Einwohnerzahl: ' + currentEntry.wikiData.population}</p>
-                      <p>{'Bürgermeister: ' + currentEntry.wikiData.mayor}</p>
-                    </Block>
-                    <img src={currentEntry.wikiData.image} width='225' />
-                    <Block><p>{currentEntry.wikiData.summary}</p></Block>
-                    <Button fill raised onClick={() => {OpenWikipedia()}}>
-                      <Icon f7='info_circle' size='18' style={{marginRight: '10px'}} />Mehr lesen
-                    </Button>
+                    {/* Eine Städtenamen sind nicht Eindeutig oder haben mehrere Wikipedia Einträge (disambiguation = true). 
+                        In dem Fall werden kein Infos zur Stadt oder Bild gezeigt, sondern auf die Wikipedia Begriffsklärung verwiesen */}
+                    {currentEntry.wikiData.disambiguation ? 
+                      <React.Fragment>
+                        <BlockTitle>Mehr Infos zur {currentEntry.city}</BlockTitle>
+                        <Block><p>{currentEntry.wikiData.summary}</p></Block>
+                        <Button fill raised onClick={() => {OpenWikipedia()}}>
+                          <Icon f7='info_circle' size='18' style={{marginRight: '10px'}} />Begriffsklärung
+                        </Button>
+                      </React.Fragment>
+                      :
+                      <React.Fragment>
+                        <BlockTitle>Mehr Infos zur {currentEntry.city}</BlockTitle>
+                        <Block strong>
+                          <p>{'Land: ' + currentEntry.wikiData.country}</p>
+                          <p>{'Postleitzahl: ' + currentEntry.wikiData.postalCodes || 'Unbekannt'}</p>
+                          <p>{'Einwohnerzahl: ' + currentEntry.wikiData.population || 'Unbekannt'}</p>
+                          <p>{'Bürgermeister: ' + currentEntry.wikiData.mayor || 'Unbekannt'}</p>
+                        </Block>
+                        <img src={currentEntry.wikiData.image} width='225' />
+                        <Block><p>{currentEntry.wikiData.summary}</p></Block>
+                        <Button fill raised onClick={() => {OpenWikipedia()}}>
+                          <Icon f7='info_circle' size='18' style={{marginRight: '10px'}} />Mehr lesen
+                        </Button>
+                      </React.Fragment>
+                    }
                   </React.Fragment>
                   :
                   <Block><p>{ currentEntry.city + ' hat keinen Wikipedia Eintrag'}</p></Block>}
