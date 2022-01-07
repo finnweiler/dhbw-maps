@@ -77,7 +77,7 @@ const WikiPanel = () => {
                       </React.Fragment>
                       :
                       <React.Fragment>
-                        <BlockTitle>Mehr Infos zur {currentEntry.city}</BlockTitle>
+                        <BlockTitle>Mehr Infos zu {currentEntry.city}</BlockTitle>
                         <Block strong>
                           <p>{'Land: ' + currentEntry.wikiData.country}</p>
                           <p>{'Postleitzahl: ' + currentEntry.wikiData.postalCodes || 'Unbekannt'}</p>
