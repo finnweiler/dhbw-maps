@@ -29,11 +29,15 @@ const Map = () => {
   }
 
   function permissionListener() {
-    navigator.permissions.query({ name: 'geolocation' }).then(function (permissionStatus) {
-      permissionStatus.onchange = function () {
-        refreshUserLocation()
-      }
-    })
+    try {
+      navigator.permissions.query({ name: 'geolocation' }).then(function (permissionStatus) {
+        permissionStatus.onchange = function () {
+          refreshUserLocation()
+        }
+      })
+    } catch (error) {
+      console.log('This browser does not support permission query.')
+    }
   }
 
   //set current position to DHBW FN and start listen if permission for geolocation position is activated
