@@ -70,7 +70,7 @@ const Routing = (props) => {
   useMapEvents({
     click(e) {
       store.dispatch('newAddress', e.latlng)
-      store.dispatch('newReloadMap', e.latlng)
+      store.dispatch('newReloadMap')
     }
   })
     

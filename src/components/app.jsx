@@ -11,6 +11,7 @@ import WikiPanel from './wikiPanel'
 import NotificationButton from './notificationButton'
 import RoutingButton from './startRoutingButton'
 import WikipediaButton from './wikipediaButton'
+import CurrentPositionInfoButton from './currentPositionInfoButton'
 import CurrentPositionButton from './currentPositionButton'
 import { Helmet } from 'react-helmet'
 
@@ -49,6 +50,7 @@ const LocationBasedService = () => {
       <RoutingButton />
       <RoutePanel />
       <WikipediaButton  />
+      <CurrentPositionInfoButton />
       <CurrentPositionButton />
       <WikiPanel />
       <Map />
