@@ -3,6 +3,7 @@ import { MapContainer, TileLayer, Marker } from 'react-leaflet'
 import { useStore } from 'framework7-react'
 import Routing from './routing'
 import store from '../js/store'
+import L from 'leaflet'
 
 const Map = () => {
   
@@ -12,6 +13,7 @@ const Map = () => {
 
 
   function getUserLocation(){
+    store.dispatch('newCurrentPosition', position)
     // https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/Using_geolocation
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(position => {
