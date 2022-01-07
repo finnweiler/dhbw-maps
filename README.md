@@ -18,7 +18,10 @@ Ziel der Aufgabenstellung war die Entwicklung einer Web Applikation in Form eine
 - Starten einer Route öffnet rechte Side Card mit Routen-Beschreibung
 - Alle Side Cards können durch Klicken auf die Karte verlassen werden und über folgende Buttons wieder eingeblendet werden
 - Benachrichtigungen können über den "Glocke"-Button deaktiviert/aktiviert werden und erinnern den Nutzer, wenn nötig, in regelmäßigen Abständen seinen Standort dauerhaft zu aktivieren
-- Folgende Funktionalitäten sind über Buttons gegeben (von links nach rechts):
+- Folgende Funktionalitäten sind am oberen Bildschirmrand über Buttons gegeben (von links nach rechts):
+  - Plus/Minus-Button: Vergrößern und Verkleinern der Karte
+  - Lupen-Button: Suchen des eingegebenen Standortes (und Öffnen der dazugehörigen Informationen mit Anzeige auf der Karte)
+- Folgende Funktionalitäten sind am unteren Bildschirmrand über Buttons gegeben (von links nach rechts):
   - Info-Button: Information zum Zielstandort
   - Pfeil-Button: Informationen zum aktuellen Standort
   - Zentrieren-Button: Fokus der Karte auf aktuelle Position/Route
