@@ -2,9 +2,8 @@ import { useStore } from 'framework7-react'
 import L from 'leaflet'
 import 'leaflet-routing-machine'
 import { useEffect } from 'react'
-import { useMapEvents, useMap } from 'react-leaflet'
+import { useMap, useMapEvents } from 'react-leaflet'
 import store from '../js/store'
-
 
 const Routing = (props) => {
   const map = useMap()
@@ -27,14 +26,13 @@ const Routing = (props) => {
           iconUrl: '/icons/red_marker.png',
           iconSize: [29, 50],
           iconAnchor: [15, 49],
-        })
+        }),
       })
-      
+
       // when dragging is over set the new destination {lat, lng}
       marker.on('dragend', (e) => {
         store.dispatch('newCurrentPosition', e.target._latlng)
       })
-
     } else {
       marker = L.marker(waypoint.latLng, {
         draggable: true,
@@ -42,14 +40,13 @@ const Routing = (props) => {
           iconUrl: '/icons/blue_marker.png',
           iconSize: [29, 50],
           iconAnchor: [15, 49],
-        })
+        }),
       })
 
       // when dragging is over set the new destination {lat, lng}
       marker.on('dragend', (e) => {
         store.dispatch('newDestination', e.target._latlng)
       })
-
     }
     return marker
   }
@@ -58,14 +55,13 @@ const Routing = (props) => {
     // creates Route control object
     const control = L.Routing.control({
       language: 'de',
-      formatter:  new L.Routing.Formatter({ language: 'de' }),
+      formatter: new L.Routing.Formatter({ language: 'de' }),
       waypoints: [L.latLng(props.user.lat, props.user.lng), L.latLng(latlng.lat, latlng.lng)],
       fitSelectedRoutes: true,
       addWaypoints: false,
       routeWhileDragging: true,
-      createMarker: createMarkerHandler
+      createMarker: createMarkerHandler,
     }).addTo(map)
-
 
     store.dispatch('newRouteControl', control)
 
@@ -78,7 +74,9 @@ const Routing = (props) => {
   // reload map when triggered by store
   useEffect(() => {
     if (destination != null && props.user != null) {
-      if (previousControl) { map.removeControl(previousControl) }
+      if (previousControl) {
+        map.removeControl(previousControl)
+      }
       loadRoute(destination)
     }
   }, [reloadMap])
@@ -88,11 +86,10 @@ const Routing = (props) => {
     click(e) {
       store.dispatch('newDestination', e.latlng)
       store.dispatch('newReloadMap')
-    }
+    },
   })
-    
-  return null
 
+  return null
 }
 
 export default Routing

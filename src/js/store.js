@@ -1,43 +1,41 @@
 import { createStore } from 'framework7/lite'
 
 /** Description of store Items:
- * 
+ *
  * routeInstructions:
  * - new Route ist set by routing.jsx
  * - routingPanel.jsx displays routeInstructions
- * 
+ *
  * routeControl:
  * - is used to delete old route object
- * 
+ *
  * destination:
  * - holds current destination {lat, lng}
  * - is set by routing.jsx
  * - is used for routing.jsx, map.jsx
- * 
+ *
  * isRoutePanelOpen:
  * - shows if routePanel is open or not
- * 
+ *
  * isWikiPanelOpen:
  * - shows if wikiPanel is open or not
- * 
+ *
  * currenWikiEntry:
  * - holds current wikipedia entry
- * 
+ *
  * currentPosition:
  * - holds current position {lat, lng}
  * - is set by map.jsx
  * - is used for wikiPanel.jsx
- * 
+ *
  * programmaticSearch:
  * - add position or destination to searchbar
- * 
+ *
  * reloadMap:
  * - if toggled it reloads the map
- * 
+ *
  * reloadPosition:
  * - if userloacation changes it reloads the position
- * 
- * 
  * */
 
 const store = createStore({
@@ -66,10 +64,10 @@ const store = createStore({
     isRoutePanelOpen({ state }) {
       return state.isRoutePanelOpen
     },
-    isWikiPanelOpen({state}) {
+    isWikiPanelOpen({ state }) {
       return state.isWikiPanelOpen
     },
-    currentWikiEntry({state}) {
+    currentWikiEntry({ state }) {
       return state.currentWikiEntry
     },
     currentPosition({ state }) {
@@ -83,7 +81,7 @@ const store = createStore({
     },
     reloadPosition({ state }) {
       return state.reloadPosition
-    }
+    },
   },
   actions: {
     newRouteInstructions({ state }, routeInstructions) {
@@ -101,13 +99,13 @@ const store = createStore({
     closeRoutePanel({ state }) {
       state.isRoutePanelOpen = false
     },
-    openWikiPanel({state}) {
+    openWikiPanel({ state }) {
       state.isWikiPanelOpen = true
     },
-    closeWikiPanel({state}) {
+    closeWikiPanel({ state }) {
       state.isWikiPanelOpen = false
     },
-    newCurrentWikiEntry({state}, entry) {
+    newCurrentWikiEntry({ state }, entry) {
       state.currentWikiEntry = entry
     },
     newCurrentPosition({ state }, currentPosition) {

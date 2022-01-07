@@ -36,6 +36,12 @@
             "never"
         ],
         "react/prop-types": "off",
-        "no-var": "error"
+        "no-var": "error",
+        "no-trailing-spaces": "error",
+        "eol-last": [
+            "error",
+            "always"
+        ],
+        "no-multiple-empty-lines": "error"
     }
 }

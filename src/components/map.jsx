@@ -1,20 +1,19 @@
-import React, { useEffect, useState } from 'react'
-import { MapContainer, TileLayer, Marker } from 'react-leaflet'
 import { useStore } from 'framework7-react'
-import Routing from './routing'
-import store from '../js/store'
 import L from 'leaflet'
+import React, { useEffect, useState } from 'react'
+import { MapContainer, Marker, TileLayer } from 'react-leaflet'
+import store from '../js/store'
+import Routing from './routing'
 
 const Map = () => {
-  
-  const [position, setPosition] = useState({lat: 47.665753037254085, lng: 9.447255091829561})
+  const [position, setPosition] = useState({ lat: 47.665753037254085, lng: 9.447255091829561 })
   const [map, setMap] = useState(null)
   const address = useStore('destination')
   const reloadPosition = useStore('reloadPosition')
 
-  function refreshUserLocation(){
+  function refreshUserLocation() {
     if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(position => {
+      navigator.geolocation.getCurrentPosition((position) => {
         const current = {
           lat: position.coords.latitude,
           lng: position.coords.longitude,
@@ -29,13 +28,14 @@ const Map = () => {
     }
   }
 
-  function permissionListener(){
-    navigator.permissions.query({name:'geolocation'}).then(function(permissionStatus) {
-      permissionStatus.onchange = function() {
+  function permissionListener() {
+    navigator.permissions.query({ name: 'geolocation' }).then(function (permissionStatus) {
+      permissionStatus.onchange = function () {
         refreshUserLocation()
       }
     })
   }
+
   //set current position to DHBW FN and start listen if permission for geolocation position is activated
   useEffect(() => {
     store.dispatch('newCurrentPosition', position)
@@ -60,7 +60,7 @@ const Map = () => {
   })
 
   return (
-    <MapContainer 
+    <MapContainer
       zoom={14}
       minZoom={4}
       scrollWheelZoom={true}
@@ -69,21 +69,16 @@ const Map = () => {
         setTimeout(() => lmap.invalidateSize(), 1000)
         setMap(lmap)
       }}
-      style={{height: '100vh'}}
+      style={{ height: '100vh' }}
     >
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-      {
-        !address ? 
-          <Marker position={position} icon={pointerIcon}></Marker>
-          : null
-      }
+      {!address ? <Marker position={position} icon={pointerIcon}></Marker> : null}
       <Routing user={position}></Routing>
     </MapContainer>
   )
-
 }
 
 export default Map
